@@ -94,7 +94,6 @@
                         <Button Name="closeButton" Style="{StaticResource controlBarButton}" Tag="{StaticResource color4}" Click="closeButton_Click" Height="30" Width="40">
                             <fa:IconImage Icon="Close" Style="{StaticResource controlBarButtonIcon}"/>
 
-                        </Button>
 
                     </StackPanel>
                 </Grid>
