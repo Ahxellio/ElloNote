@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +53,58 @@ namespace ElloNote
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Shutdown();
+        }
 
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void maximizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(this.WindowState == WindowState.Normal)
+            {
+                this.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
+            
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Filter = "Text files (.txt)|*.txt|All files (*.*)|*.*";
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (dlg.ShowDialog() == true)
+            {
+                FileStream fs = new FileStream(dlg.FileName, FileMode.Create, FileAccess.Write);
+                
+            }
+        }
+
+        private void nextButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void openButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Text files (.txt)|*.txt|All files (*.*)|*.*";
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (dlg.ShowDialog() == true)
+            {
+                FileStream fs = new FileStream(dlg.FileName, FileMode.Open);
+            }
         }
     }
 }

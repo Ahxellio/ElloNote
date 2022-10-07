@@ -40,7 +40,7 @@
                 <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color1}">
                     <StackPanel Orientation="Horizontal">
                         <fa:IconImage Icon="Home"  Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
+                        <TextBlock Text="Main" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color2}">
@@ -84,17 +84,45 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel x:Name="pnlControlBar" Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft"
                         Background="Transparent" Margin="0,0,3,0" MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
                         MouseEnter="pnlControlBar_MouseEnter">
 
-                        <Button Name="closeButton" Style="{StaticResource controlBarButton}" Tag="{StaticResource color4}" Click="closeButton_Click" Height="30" Width="40">
+                        <Button Name="closeButton" Style="{StaticResource controlBarButton}" Tag="{StaticResource color4}" Click="closeButton_Click">
                             <fa:IconImage Icon="Close" Style="{StaticResource controlBarButtonIcon}"/>
+                        </Button>
+                        <Button Name="maximizeButton" Style="{StaticResource controlBarButton}" Tag="{StaticResource color4}" Click="maximizeButton_Click">
+                            <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlBarButtonIcon}"/>
+                        </Button>
+                        <Button Name="minimizeButton" Style="{StaticResource controlBarButton}" Tag="{StaticResource color4}" Click="minimizeButton_Click" >
+                            <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlBarButtonIcon}"/>
+                        </Button>
 
-
+                    </StackPanel>
+                    <StackPanel x:Name="pnlDashboard" Grid.Row="1" Orientation="Horizontal">
+                        <Button x:Name="backButton" Style="{StaticResource controlBarButton}" Click="backButton_Click">
+                            <fa:IconImage Icon="RotateLeft"/>
+                        </Button>
+                        <Button x:Name="nextButton" Style="{StaticResource controlBarButton}" Click="nextButton_Click">
+                            <fa:IconImage Icon="RotateRight"/>
+                        </Button>
+                        <Button x:Name="saveButton" Style="{StaticResource controlBarButton}" Click="saveButton_Click">
+                            <fa:IconImage Icon="FileEdit"/>
+                        </Button>
+                        <Button x:Name="openButton" Style="{StaticResource controlBarButton}" Click="openButton_Click">
+                            <fa:IconImage Icon="Folder"/>
+                        </Button>
+                        <Border Grid.Row="1" Width="100" CornerRadius="2" BorderThickness="1">
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="BorderBrush" Value="Black" />
+                                </Style>
+                            </Border.Style>
+                            <Button Style="{StaticResource cmbButton}"></Button>
+                        </Border>
                     </StackPanel>
                 </Grid>
             </Border>
