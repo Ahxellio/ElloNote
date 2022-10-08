@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing.Text;
 
 namespace ElloNote
 {
@@ -25,6 +26,9 @@ namespace ElloNote
         public MainWindow()
         {
             InitializeComponent();
+            fontsComboBox.SelectedIndex = 0;
+            valuesComboBox.SelectedIndex = 0;
+
         }
         private void btnHome_Click(object sender, RoutedEventArgs e)
         {
@@ -49,6 +53,7 @@ namespace ElloNote
         private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
         {
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
@@ -105,6 +110,55 @@ namespace ElloNote
             {
                 FileStream fs = new FileStream(dlg.FileName, FileMode.Open);
             }
+        }
+
+        private void ComboBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void fontsComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            var fontCollections = new InstalledFontCollection();
+            var ff = fontCollections.Families;
+            foreach(var font in ff)
+            {
+                fontsComboBox.Items.Add(font.Name);
+            }
+        }
+
+        private void valuesComboBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void valuesComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            int[] values = new int[16] { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
+            foreach(var value in values)
+            {
+                valuesComboBox.Items.Add(value);
+            }    
+        }
+
+        private void boldTextButton_Click(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+        private void underlinedTextButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void obliqueTextButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dashbordText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
