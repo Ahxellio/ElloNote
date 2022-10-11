@@ -15,6 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing.Text;
+using System.Drawing.Imaging;
+using WPF.ColorPicker;
+using WPF.ColorPicker.Code;
 
 namespace ElloNote
 {
@@ -66,18 +69,7 @@ namespace ElloNote
             this.WindowState = WindowState.Minimized;
         }
 
-        private void maximizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-            else
-            {
-                this.WindowState = WindowState.Normal;
-            }
-            
-        }
+        
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -87,6 +79,7 @@ namespace ElloNote
             if (dlg.ShowDialog() == true)
             {
                 FileStream fs = new FileStream(dlg.FileName, FileMode.Create, FileAccess.Write);
+               
                 
             }
         }
@@ -143,7 +136,7 @@ namespace ElloNote
 
         private void boldTextButton_Click(object sender, RoutedEventArgs e)
         {
-          
+
         }
 
         private void underlinedTextButton_Click(object sender, RoutedEventArgs e)
@@ -159,6 +152,24 @@ namespace ElloNote
         private void dashbordText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void colorDlgButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StackPanel_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void colorChangingButton_Click(object sender, RoutedEventArgs e)
+        {
+            Color color;
+            ColorPickerWindow.ShowDialog(out color);
+            SolidColorBrush brush = new SolidColorBrush(color);
+            colorChangingButton.Foreground = brush;
+            dashbordText.Foreground = brush;
         }
     }
 }

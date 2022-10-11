@@ -87,14 +87,15 @@
                         <Popup Name="Popup" Placement="Bottom"
                    Focusable="False" AllowsTransparency="True"
                    IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
-                   PopupAnimation="Slide">
+                   PopupAnimation="Fade">
                             <Grid Name="DropDown" SnapsToDevicePixels="True"
                     MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
                     MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
                                 <Border Name="DropDownBorder" Background="{StaticResource ComboBoxNormalBorderBrush}" Margin="0, 1, 0, 0"
                         CornerRadius="0" BorderThickness="1,1,1,1" 
                         BorderBrush="{StaticResource ComboBoxNormalBorderBrush}"/>
-                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                <ScrollViewer Margin="4" SnapsToDevicePixels="True" Background="{StaticResource ComboBoxNormalBorderBrush}"
+                                              >
                                     <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
                                 </ScrollViewer>
                             </Grid>

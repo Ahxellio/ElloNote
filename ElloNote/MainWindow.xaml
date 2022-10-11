@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:cp="clr-namespace:WPF.ColorPicker;assembly=WPF.ColorPicker"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElloNote"
         mc:Ignorable="d"
-        Title="ElloNote" Height="450" Width="800" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Title="ElloNote" Height="760" Width="1340" WindowStyle="None" WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True">
     <Border CornerRadius="10"
@@ -36,10 +37,11 @@
                         <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
-                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel Grid.Column="0" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal"
                             Height="35"
-                            Margin="15,25,0,40">
+                            Margin="15,25,0,40"
+                            >
                         <TextBlock Text="AHX" Foreground="{StaticResource titleColor2}" FontSize="20" FontFamily="VDS"
                                FontWeight="Medium" VerticalAlignment="Center" Margin="50,0,0,0"/>
 
@@ -97,9 +99,9 @@
                 </Border.Background>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel x:Name="pnlControlBar" Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft"
                         Background="Transparent" Margin="0,0,3,0" MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
@@ -108,56 +110,68 @@
                                 Tag="{StaticResource color4}" Click="closeButton_Click" Width="40">
                             <fa:IconImage Icon="Close" Style="{StaticResource controlBarButtonIcon}"/>
                         </Button>
-                        <Button x:Name="maximizeButton" Style="{StaticResource controlBarButton}" 
-                                Tag="{StaticResource color4}" Click="maximizeButton_Click">
-                            <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlBarButtonIcon}"/>
-                        </Button>
                         <Button x:Name="minimizeButton" Style="{StaticResource controlBarButton}" 
                                 Tag="{StaticResource color4}" Click="minimizeButton_Click" >
                             <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlBarButtonIcon}"/>
                         </Button>
 
                     </StackPanel>
-                    <StackPanel x:Name="pnlDashboard" Grid.Row="1" Orientation="Horizontal" 
+                    <DockPanel x:Name="pnlDashboard" Grid.Row="1"
                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <Button x:Name="backButton" Style="{StaticResource controlBarButton}" Click="backButton_Click">
-                            <fa:IconImage Icon="RotateLeft" Style="{StaticResource dashboardBarButtonIcon}"/>
-                        </Button>
-                        <Button x:Name="nextButton" Style="{StaticResource controlBarButton}" Click="nextButton_Click">
-                            <fa:IconImage Icon="RotateRight" Style="{StaticResource dashboardBarButtonIcon}"/>
-                        </Button>
-                        <Button x:Name="saveButton" Style="{StaticResource controlBarButton}" Click="saveButton_Click">
-                            <fa:IconImage Icon="FileEdit" Style="{StaticResource dashboardBarButtonIcon}"/>
-                        </Button>
-                        <Button x:Name="openButton" Style="{StaticResource controlBarButton}" Click="openButton_Click">
-                            <fa:IconImage Icon="Folder" Style="{StaticResource dashboardBarButtonIcon}"/>
-                        </Button>
-                        <ComboBox x:Name="fontsComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
-                                  MouseLeftButtonDown="ComboBox_MouseLeftButtonDown" Loaded="fontsComboBox_Loaded"/>
-                        <ComboBox x:Name="valuesComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
-                                  MouseLeftButtonDown="valuesComboBox_MouseLeftButtonDown" 
-                                  Loaded="valuesComboBox_Loaded" Margin="1,0,0,0"/>
-                        <RadioButton x:Name="boldTextButton" Style="{StaticResource dashboardBarButton}" 
-                                     Click="boldTextButton_Click"
-                                     Content="B" FontWeight="ExtraBold" Margin="5,0,0,0" Width="20" 
-                                     GroupName="boldEditer"/>
-                        <RadioButton x:Name="obliqueTextButton" Style="{StaticResource dashboardBarButton}" 
-                                     Click="obliqueTextButton_Click"
-                                     Content="K" FontStyle="Oblique"  Margin="5,0,0,0" Width="20" 
-                                     GroupName="obliqueEditer" FontFamily="VDS"/>
-                        <RadioButton x:Name="underlinedTextButton" Style="{StaticResource dashboardBarButton}" 
-                                     Click="underlinedTextButton_Click"
-                                     Margin="5,0,0,0" Content="U" Width="20" GroupName="underlinedEditer">
+                        <WrapPanel>
+                                <Button x:Name="backButton" Style="{StaticResource dashboardBarButton}" Click="backButton_Click">
+                                <fa:IconImage Icon="RotateLeft" Style="{StaticResource dashboardBarButtonIcon}"/>
+                            </Button>
+                            <Button x:Name="nextButton" Style="{StaticResource dashboardBarButton}" Click="nextButton_Click">
+                                <fa:IconImage Icon="RotateRight" Style="{StaticResource dashboardBarButtonIcon}"/>
+                            </Button>
+                            <Polygon Fill="{StaticResource plainTextColor3}" StrokeThickness="1" Stroke="{StaticResource plainTextColor3}"
+                                     Points="0,0,0,35" Margin="3,0,0,0"/>
+                            <Button x:Name="saveButton" Style="{StaticResource dashboardBarButton}" Click="saveButton_Click">
+                                <fa:IconImage Icon="FileEdit" Style="{StaticResource dashboardBarButtonIcon}"/>
+                            </Button>
+                            <Button x:Name="openButton" Style="{StaticResource dashboardBarButton}" Click="openButton_Click">
+                                <fa:IconImage Icon="Folder" Style="{StaticResource dashboardBarButtonIcon}"/>
+                            </Button>
+                            <Polygon Fill="{StaticResource plainTextColor3}" StrokeThickness="1" Stroke="{StaticResource plainTextColor3}"
+                                     Points="0,0,0,35" Margin="3,0,0,0"/>
+                            <ComboBox x:Name="fontsComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
+                                      MouseLeftButtonDown="ComboBox_MouseLeftButtonDown" Loaded="fontsComboBox_Loaded"/>
+                            <ComboBox x:Name="valuesComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
+                                      MouseLeftButtonDown="valuesComboBox_MouseLeftButtonDown" 
+                                      Loaded="valuesComboBox_Loaded" Margin="1,0,0,0"/>
+                            <ToggleButton x:Name="boldTextButton"
+                                         Click="boldTextButton_Click"
+                                         Content="B" FontWeight="ExtraBold"
+                                         Style="{StaticResource toggleButton}"
+                                         />
+                            <ToggleButton x:Name="obliqueTextButton"
+                                         Click="obliqueTextButton_Click"
+                                         
+                                         Style="{StaticResource toggleButton}" FontStyle="Italic" Content="K">
+                            </ToggleButton>
+                            <ToggleButton x:Name="underlinedTextButton" 
+                                         Click="underlinedTextButton_Click"
+                                         FontWeight="Regular" 
+                                         Style="{StaticResource toggleButton}">
+                                <TextBlock Text="U" TextDecorations="Underline"/>
 
-                        </RadioButton>
-                    </StackPanel>
-                    <Border Grid.Column="1" Grid.Row="2" Margin="0,2,0,0">
-                        <!--<ScrollViewer>
+                            </ToggleButton>
+                            <Button x:Name="colorChangingButton" Style="{StaticResource dashboardBarButton}" Width="25" Click="colorChangingButton_Click">
+                                <fa:IconImage Icon="ColonSign" Style="{StaticResource dashboardBarButtonIcon}"/>
 
+                            </Button>
+                        </WrapPanel>
+                    </DockPanel>
+                    
+                    <Border Grid.Column="1" Grid.Row="2" Margin="0,1,0,0">
+                        <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                           
                             <RichTextBox x:Name="dashbordText" Background="Transparent" BorderBrush="Transparent" 
                                          Width="Auto" Height="Auto" BorderThickness="0"
-                                         Foreground="{StaticResource titleColor1}" MouseLeftButtonDown="dashbordText_MouseLeftButtonDown"/>
-                        </ScrollViewer>-->
+                                         Foreground="{StaticResource titleColor1}" MouseLeftButtonDown="dashbordText_MouseLeftButtonDown"
+                                         />
+                        </DockPanel>
 
                     </Border>
 

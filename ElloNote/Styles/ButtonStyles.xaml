@@ -5,7 +5,7 @@
         <!--Button Style-->
         <Setter Property="Height" Value="35"/>
         <Setter Property="Width" Value="150"/>
-        <Setter Property="Margin" Value="-5,0,0,5"/>
+        <Setter Property="Margin" Value="-5,10,0,5"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -25,14 +25,14 @@
         <Style.Triggers>
             <!-- Menu Button style on hover-->
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Margin" Value="0,10,0,5"/>
                 <Setter Property="Background" Value="{StaticResource panelOverColor}"/>
                 <Setter Property="Foreground" Value="{StaticResource titleColor3}"/>
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
             </Trigger>
             <!--Menu button Active style-->
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Margin" Value="-5,0,0,5"/>
+                <Setter Property="Margin" Value="-5,10,0,5"/>
                 <Setter Property="Background" Value="{StaticResource panelActiveColor}"/>
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
@@ -99,43 +99,82 @@
     
     
     
-    <Style x:Key="dashboardBarButton" TargetType="RadioButton">
+    <Style x:Key="dashboardBarButton" TargetType="Button">
         <!--Dashboard Button Style-->
         <Setter Property="Width" Value="40"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="RadioButton">
-                    <Border Background="{TemplateBinding Background}"
-                            CornerRadius="5"
-                            BorderBrush="{TemplateBinding BorderBrush}">
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="btnBorder" Margin="{TemplateBinding Margin}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsPressed" Value="True">
+                            <Setter TargetName="btnBorder" Property="Margin" Value="3,3,0,0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
         <Style.Triggers>
+            
             <!--Dashboard Button style on hover-->
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="AntiqueWhite"/>
-            </Trigger>
-            <!--Dashboard active button style-->
-            <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Margin" Value="-5,0,0,5"/>
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="AntiqueWhite"/>
-                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource self}}"/>
+                <Setter Property="Background" Value="{StaticResource panelColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource color10}"/>
+                
             </Trigger>
         </Style.Triggers>
     </Style>
     <!--Dashboard Button icon-->
     <Style x:Key="dashboardBarButtonIcon" TargetType="fa:IconImage">
         <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
-        <Setter Property="Width" Value="20"/>
-        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
     </Style>
+
+    <Style x:Key="toggleButton" TargetType="ToggleButton">
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Name="Border" 
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource panelColor}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource panelColor}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="colorButton" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource panelColor}"/>
+        <Setter Property="Width" Value="18"/>
+        <Setter Property="Margin" Value="0,0,1,0"/>
+        <Setter Property="Height" Value="16"/>
+    </Style>
+
 </ResourceDictionary>
