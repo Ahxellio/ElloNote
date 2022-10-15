@@ -22,7 +22,7 @@ using WPF.ColorPicker;
 using WPF.ColorPicker.Code;
 using System.Drawing;
 using System.Collections.ObjectModel;
-using ElloNote.Models;
+using Color = System.Windows.Media.Color;
 
 namespace ElloNote.ViewModels
 {
@@ -34,7 +34,7 @@ namespace ElloNote.ViewModels
         public ICommand CloseApplicationCommand { get; }
         private void OnCloseApplicationCommandExecuted(object p)
         {
-           Application.Current.Shutdown();
+            Application.Current.Shutdown();
         }
         private bool CanCloseApplicationCommandExecute(object p) => true;
 
@@ -73,9 +73,39 @@ namespace ElloNote.ViewModels
                 FileStream fs = new FileStream(dlg.FileName, FileMode.Open);
             }
         }
+        /// <summary>ColorPicker Window</summary>
         private bool CanOpenFileCommandExecute(object p) => true;
 
 
+        public ICommand OpenColorPickerCommand { get; }
+        private void OnOpenColorPickerCommandExecuted(object p)
+        {
+            Color color;
+            ColorPickerWindow.ShowDialog(out color);
+        }
+        private bool CanOpenColorPickerCommandExecute(object p) => true;
+
+        /// <summary>FontSize Values</summary>
+        private List<int> _SourceList = new List<int> { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
+        public List<int> SourceList
+        {
+            get { return _SourceList; }
+            set { Set(ref _SourceList, value); }
+        }
+        /// <summary></summary>
+        public ICommand MoveApplicationCommand { get; }
+        private void OnMoveApplicationCommandExecuted(object p)
+        {
+            
+        }
+        private bool CanMoveApplicationCommandExecute(object p) => true;
+
+        public ICommand FontColorChangeCommand { get; }
+        private void OnFontColorChangeCommandExecuted(object p)
+        {
+
+        }
+        private bool CanColorChangeCommandExecute(object p) => true;
         #endregion
 
         public MainWindowViewModel()
@@ -83,6 +113,7 @@ namespace ElloNote.ViewModels
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
             SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecuted, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
+            OpenColorPickerCommand = new LambdaCommand(OnOpenColorPickerCommandExecuted, CanOpenColorPickerCommandExecute);
 
         }
     }

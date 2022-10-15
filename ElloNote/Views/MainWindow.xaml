@@ -5,12 +5,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:cp="clr-namespace:WPF.ColorPicker;assembly=WPF.ColorPicker"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ext="clr-namespace:ElloNote.Views.Extensions"
         xmlns:vm ="clr-namespace:ElloNote.ViewModels"
         xmlns:local="clr-namespace:ElloNote"
         mc:Ignorable="d"
-        Title="ElloNote" Height="760" Width="1340" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Title="ElloNote" Height="760" Width="1440" WindowStyle="None" WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        
+        >
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -124,7 +127,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel x:Name="pnlControlBar" Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft"
-                        Background="Transparent" Margin="0,0,3,0" MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                        Background="Transparent" Margin="0,0,3,0"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Button x:Name="closeButton" Style="{StaticResource controlBarButton}" 
                                 Tag="{StaticResource color4}" Command="{Binding CloseApplicationCommand}" Width="40">
@@ -132,7 +135,7 @@
                         </Button>
 
                         <Button x:Name="minimizeButton" Style="{StaticResource controlBarButton}" 
-                                Tag="{StaticResource color4}" Click="minimizeButton_Click" >
+                                Tag="{StaticResource color4}">
                             <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlBarButtonIcon}"/>
                         </Button>
                     </StackPanel>
@@ -162,11 +165,10 @@
                                      Points="0,0,0,35" Margin="3,0,0,0"/>
                             
                             <ComboBox x:Name="fontsComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
-                                      ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"/>
+                                      ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" SelectedIndex="0"/>
                             
                             <ComboBox x:Name="valuesComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
-                                      MouseLeftButtonDown="valuesComboBox_MouseLeftButtonDown" 
-                                      Loaded="valuesComboBox_Loaded" Margin="1,0,0,0"/>
+                                      ItemsSource="{Binding SourceList}" Margin="1,0,0,0" SelectedIndex="0"/>
                             
                             <ToggleButton x:Name="boldTextButton"
                                          Content="B" FontWeight="ExtraBold"
@@ -184,7 +186,7 @@
                                 <TextBlock Text="U" TextDecorations="Underline"/>
                             </ToggleButton>
                             
-                            <Button x:Name="colorChangingButton" Style="{StaticResource dashboardBarButton}" Width="25" Click="colorChangingButton_Click">
+                            <Button x:Name="colorChangingButton" Style="{StaticResource dashboardBarButton}" Width="25" Command="{Binding OpenColorPickerCommand}">
                                 <fa:IconImage Icon="Palette" Style="{StaticResource dashboardBarButtonIcon}"/>
                             </Button>
                             
