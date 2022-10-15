@@ -75,16 +75,6 @@ namespace ElloNote.ViewModels
         }
         private bool CanOpenFileCommandExecute(object p) => true;
 
-        private string _selectFont;
-        FontsModel model = new FontsModel();
-
-        public IEnumerable<InstalledFontCollection> SelectedFonts => model.AllFonts;
-
-        public string SelectFont { get => _selectFont; set { Set(ref _selectFont, value); } }
-
-
-
-
 
         #endregion
 

@@ -162,7 +162,7 @@
                                      Points="0,0,0,35" Margin="3,0,0,0"/>
                             
                             <ComboBox x:Name="fontsComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
-                                      ItemsSource="{Binding SelectedFonts}" SelectedItem="{Binding SelectFont}"/>
+                                      ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"/>
                             
                             <ComboBox x:Name="valuesComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
                                       MouseLeftButtonDown="valuesComboBox_MouseLeftButtonDown" 

@@ -33,20 +33,6 @@ namespace ElloNote
             valuesComboBox.SelectedIndex = 0;
 
         }
-        private void btnHome_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnInput_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnDrawing_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
