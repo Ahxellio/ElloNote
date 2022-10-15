@@ -53,61 +53,9 @@ namespace ElloNote
             DragMove();
         }
 
-        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
-        {
-            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-            this.MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
-        }
-
-        private void closeButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
-        }
-
-        
-
-        private void saveButton_Click(object sender, RoutedEventArgs e)
-        {
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = "Text files (.txt)|*.txt|All files (*.*)|*.*";
-            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (dlg.ShowDialog() == true)
-            {
-                FileStream fs = new FileStream(dlg.FileName, FileMode.Create, FileAccess.Write);
-               
-                
-            }
-        }
-
-        private void nextButton_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
-
-        private void openButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Text files (.txt)|*.txt|All files (*.*)|*.*";
-            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (dlg.ShowDialog() == true)
-            {
-                FileStream fs = new FileStream(dlg.FileName, FileMode.Open);
-            }
-        }
-
-        private void ComboBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
 
         private void fontsComboBox_Loaded(object sender, RoutedEventArgs e)
@@ -132,35 +80,6 @@ namespace ElloNote
             {
                 valuesComboBox.Items.Add(value);
             }    
-        }
-
-        private void boldTextButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void underlinedTextButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void obliqueTextButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void dashbordText_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void colorDlgButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void StackPanel_Loaded(object sender, RoutedEventArgs e)
-        {
         }
 
         private void colorChangingButton_Click(object sender, RoutedEventArgs e)
