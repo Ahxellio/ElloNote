@@ -29,10 +29,6 @@ namespace ElloNote
         public MainWindow()
         {
             InitializeComponent();
-
-
         }
-
-
     }
 }

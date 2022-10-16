@@ -5,7 +5,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:cp="clr-namespace:WPF.ColorPicker;assembly=WPF.ColorPicker"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ext="clr-namespace:ElloNote.Views.Extensions"
         xmlns:vm ="clr-namespace:ElloNote.ViewModels"
         xmlns:local="clr-namespace:ElloNote"
         mc:Ignorable="d"
@@ -129,13 +128,14 @@
                     <StackPanel x:Name="pnlControlBar" Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft"
                         Background="Transparent" Margin="0,0,3,0"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
                         <Button x:Name="closeButton" Style="{StaticResource controlBarButton}" 
                                 Tag="{StaticResource color4}" Command="{Binding CloseApplicationCommand}" Width="40">
                             <fa:IconImage Icon="Close" Style="{StaticResource controlBarButtonIcon}"/>
                         </Button>
 
                         <Button x:Name="minimizeButton" Style="{StaticResource controlBarButton}" 
-                                Tag="{StaticResource color4}">
+                                Tag="{StaticResource color4}" Command="{Binding MinimizedApplicationCommand}">
                             <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlBarButtonIcon}"/>
                         </Button>
                     </StackPanel>
@@ -186,7 +186,8 @@
                                 <TextBlock Text="U" TextDecorations="Underline"/>
                             </ToggleButton>
                             
-                            <Button x:Name="colorChangingButton" Style="{StaticResource dashboardBarButton}" Width="25" Command="{Binding OpenColorPickerCommand}">
+                            <Button x:Name="colorChangingButton" Style="{StaticResource dashboardBarButton}" Margin="1,0,0,0" Width="25" 
+                                    Command="{Binding OpenColorPickerCommand}">
                                 <fa:IconImage Icon="Palette" Style="{StaticResource dashboardBarButtonIcon}"/>
                             </Button>
                             
@@ -198,7 +199,11 @@
                            
                             <RichTextBox x:Name="dashbordText" Background="Transparent" BorderBrush="Transparent" 
                                          Width="Auto" Height="Auto" BorderThickness="0"
-                                         Foreground="{StaticResource titleColor1}"
+                                         Foreground="{StaticResource plainTextColor1}" 
+                                         FontSize="{Binding Path=SelectedIndex, ElementName=valuesComboBox}"
+                                         FontFamily="{Binding Path=SelectedItem, ElementName=fontsComboBox}" 
+                                         
+                                         
                                          />
                         </DockPanel>
 

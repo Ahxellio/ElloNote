@@ -18,11 +18,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing.Text;
 using System.Drawing.Imaging;
-using WPF.ColorPicker;
-using WPF.ColorPicker.Code;
 using System.Drawing;
 using System.Collections.ObjectModel;
 using Color = System.Windows.Media.Color;
+using Brush = System.Windows.Media.Brush;
+using WPF.ColorPicker;
 
 namespace ElloNote.ViewModels
 {
@@ -42,6 +42,7 @@ namespace ElloNote.ViewModels
         public ICommand MinimizedApplicationCommand { get; }
         private void OnMinimizedApplicationCommandExecuted(object p)
         {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
         private bool CanMinimizedApplicationCommandExecute(object p) => true;
 
@@ -83,7 +84,9 @@ namespace ElloNote.ViewModels
             Color color;
             ColorPickerWindow.ShowDialog(out color);
         }
+
         private bool CanOpenColorPickerCommandExecute(object p) => true;
+
 
         /// <summary>FontSize Values</summary>
         private List<int> _SourceList = new List<int> { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
@@ -92,13 +95,16 @@ namespace ElloNote.ViewModels
             get { return _SourceList; }
             set { Set(ref _SourceList, value); }
         }
+
         /// <summary></summary>
         public ICommand MoveApplicationCommand { get; }
         private void OnMoveApplicationCommandExecuted(object p)
         {
-            
+            var window = p as Window;
+            window?.DragMove();
         }
         private bool CanMoveApplicationCommandExecute(object p) => true;
+
 
         public ICommand FontColorChangeCommand { get; }
         private void OnFontColorChangeCommandExecuted(object p)
@@ -114,6 +120,8 @@ namespace ElloNote.ViewModels
             SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecuted, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
             OpenColorPickerCommand = new LambdaCommand(OnOpenColorPickerCommandExecuted, CanOpenColorPickerCommandExecute);
+            MinimizedApplicationCommand = new LambdaCommand(OnMinimizedApplicationCommandExecuted, CanMinimizedApplicationCommandExecute);
+            MoveApplicationCommand = new LambdaCommand(OnMoveApplicationCommandExecuted, CanMoveApplicationCommandExecute);
 
         }
     }
