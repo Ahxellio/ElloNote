@@ -4,6 +4,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:cp="clr-namespace:WPF.ColorPicker;assembly=WPF.ColorPicker"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm ="clr-namespace:ElloNote.ViewModels"
         xmlns:local="clr-namespace:ElloNote"
@@ -11,7 +12,6 @@
         Title="ElloNote" Height="760" Width="1440" WindowStyle="None" WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
-        
         >
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -143,14 +143,18 @@
                     <DockPanel x:Name="pnlDashboard" Grid.Row="1"
                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <WrapPanel>
-                                <Button x:Name="backButton" Style="{StaticResource dashboardBarButton}">
+                            <ToolBar Style="{DynamicResource dashboardToolBarStyle}"  Background="Transparent" ToolBarTray.IsLocked="True">
+
+                                <Button x:Name="backButton" Style="{StaticResource dashboardBarButton}"
+                                        Command="ApplicationCommands.Undo" ToolTip="Undo">
                                 <fa:IconImage Icon="RotateLeft" Style="{StaticResource dashboardBarButtonIcon}"/>
                             </Button>
                             
-                            <Button x:Name="nextButton" Style="{StaticResource dashboardBarButton}">
+                            <Button x:Name="nextButton" Style="{StaticResource dashboardBarButton}"
+                                    Command="ApplicationCommands.Redo" ToolTip="Redo">
                                 <fa:IconImage Icon="RotateRight" Style="{StaticResource dashboardBarButtonIcon}"/>
                             </Button>
-                            
+                            </ToolBar>
                             <Polygon Fill="{StaticResource plainTextColor3}" StrokeThickness="1" Stroke="{StaticResource plainTextColor3}"
                                      Points="0,0,0,35" Margin="3,0,0,0"/>
                             <Button x:Name="saveButton" Style="{StaticResource dashboardBarButton}" Command="{Binding SaveFileCommand}">
@@ -168,43 +172,57 @@
                                       ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}" SelectedIndex="0"/>
                             
                             <ComboBox x:Name="valuesComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
-                                      ItemsSource="{Binding SourceList}" Margin="1,0,0,0" SelectedIndex="0"/>
-                            
-                            <ToggleButton x:Name="boldTextButton"
+                                      ItemsSource="{Binding SourceList}" Margin="1,0,0,0" SelectedIndex="4" 
+                                      SelectedItem="{Binding SelectedFontSize}"/>
+                            <ToolBar Style="{DynamicResource dashboardToolBarStyle}"  Background="Transparent" ToolBarTray.IsLocked="True">
+                                <ToggleButton x:Name="boldTextButton"
                                          Content="B" FontWeight="ExtraBold"
                                          Style="{StaticResource toggleButton}"
+                                         Command="EditingCommands.ToggleBold"
+                                         CommandTarget="{Binding ElementName=richTextBox}"
+                                         
                                          />
                             
                             <ToggleButton x:Name="obliqueTextButton"
+                                          Command="EditingCommands.ToggleItalic" 
+                                          CommandTarget="{Binding ElementName=richTextBox}"
                                          
                                          Style="{StaticResource toggleButton}" FontStyle="Italic" Content="K">
                             </ToggleButton>
-                            
+
                             <ToggleButton x:Name="underlinedTextButton" 
                                          FontWeight="Regular" 
-                                         Style="{StaticResource toggleButton}">
+                                         Style="{StaticResource toggleButton}"
+                                         Command="EditingCommands.ToggleUnderline" 
+                                         CommandTarget="{Binding ElementName=richTextBox}">
                                 <TextBlock Text="U" TextDecorations="Underline"/>
                             </ToggleButton>
-                            
-                            <Button x:Name="colorChangingButton" Style="{StaticResource dashboardBarButton}" Margin="1,0,0,0" Width="25" 
-                                    Command="{Binding OpenColorPickerCommand}">
-                                <fa:IconImage Icon="Palette" Style="{StaticResource dashboardBarButtonIcon}"/>
-                            </Button>
-                            
+                            </ToolBar>
+
+                            <xctk:ColorPicker Width="20" SelectedColor="Black"  ShowDropDownButton="False"
+                                              DisplayColorTooltip="True" Name="ColorPicker"
+                                              Background="Transparent" DropDownBackground="{StaticResource panelColor}"
+                                              BorderThickness="0"/>
                         </WrapPanel>
                     </DockPanel>
                     
                     <Border Grid.Column="1" Grid.Row="2" Margin="0,1,0,0">
                         <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                           
-                            <RichTextBox x:Name="dashbordText" Background="Transparent" BorderBrush="Transparent" 
+
+                            <xctk:RichTextBox x:Name="richTextBox" Background="Transparent" BorderBrush="Transparent" 
                                          Width="Auto" Height="Auto" BorderThickness="0"
-                                         Foreground="{StaticResource plainTextColor1}" 
-                                         FontSize="{Binding Path=SelectedIndex, ElementName=valuesComboBox}"
-                                         FontFamily="{Binding Path=SelectedItem, ElementName=fontsComboBox}" 
-                                         
-                                         
-                                         />
+                                         Foreground="{Binding Path=SelectedColor, ElementName=ColorPicker}" 
+                                         FontSize="{Binding SelectedFontSize}"
+                                         FontFamily="{Binding Path=SelectedItem, ElementName=fontsComboBox}"
+                                         Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         >
+                                <RichTextBox.CommandBindings>
+                                    <CommandBinding Command="EditingCommands.ToggleBold"/>
+                                    <CommandBinding Command="EditingCommands.ToggleItalic"/>
+                                    <CommandBinding Command="EditingCommands.ToggleUnderline" />
+                                </RichTextBox.CommandBindings>
+                            </xctk:RichTextBox>
                         </DockPanel>
 
                     </Border>

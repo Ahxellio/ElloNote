@@ -23,12 +23,15 @@ using System.Collections.ObjectModel;
 using Color = System.Windows.Media.Color;
 using Brush = System.Windows.Media.Brush;
 using WPF.ColorPicker;
+using Xceed.Wpf.Toolkit;
+using WindowState = System.Windows.WindowState;
 
 namespace ElloNote.ViewModels
 {
     internal class MainWindowViewModel : BaseVM
     {
         #region Команды
+        #region Close/Minimized Window Commands
         /// <summary>CloseApplicationCMD</summary>
 
         public ICommand CloseApplicationCommand { get; }
@@ -45,7 +48,10 @@ namespace ElloNote.ViewModels
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
         private bool CanMinimizedApplicationCommandExecute(object p) => true;
+        #endregion
 
+
+        #region Save/Open File Command
         /// <summary>SaveFileCMD</summary>
 
         public ICommand SaveFileCommand { get; }
@@ -74,19 +80,14 @@ namespace ElloNote.ViewModels
                 FileStream fs = new FileStream(dlg.FileName, FileMode.Open);
             }
         }
-        /// <summary>ColorPicker Window</summary>
         private bool CanOpenFileCommandExecute(object p) => true;
+        #endregion
 
+        #region ColorPicker
 
-        public ICommand OpenColorPickerCommand { get; }
-        private void OnOpenColorPickerCommandExecuted(object p)
-        {
-            Color color;
-            ColorPickerWindow.ShowDialog(out color);
-        }
+        #endregion
 
-        private bool CanOpenColorPickerCommandExecute(object p) => true;
-
+        #region FontSizeProp
 
         /// <summary>FontSize Values</summary>
         private List<int> _SourceList = new List<int> { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
@@ -95,8 +96,14 @@ namespace ElloNote.ViewModels
             get { return _SourceList; }
             set { Set(ref _SourceList, value); }
         }
+        private int _SelectedFontSize;
+        public int SelectedFontSize { get => _SelectedFontSize; set { Set(ref _SelectedFontSize, value); } }
+        #endregion
 
-        /// <summary></summary>
+ 
+
+
+       /// <summary></summary>
         public ICommand MoveApplicationCommand { get; }
         private void OnMoveApplicationCommandExecuted(object p)
         {
@@ -112,6 +119,11 @@ namespace ElloNote.ViewModels
 
         }
         private bool CanColorChangeCommandExecute(object p) => true;
+
+
+        private string _Notes;
+
+        public string Notes { get => _Notes; set => Set(ref _Notes, value); }
         #endregion
 
         public MainWindowViewModel()
@@ -119,10 +131,7 @@ namespace ElloNote.ViewModels
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
             SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecuted, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
-            OpenColorPickerCommand = new LambdaCommand(OnOpenColorPickerCommandExecuted, CanOpenColorPickerCommandExecute);
             MinimizedApplicationCommand = new LambdaCommand(OnMinimizedApplicationCommandExecuted, CanMinimizedApplicationCommandExecute);
-            MoveApplicationCommand = new LambdaCommand(OnMoveApplicationCommandExecuted, CanMoveApplicationCommandExecute);
-
-        }
+    }
     }
 }
