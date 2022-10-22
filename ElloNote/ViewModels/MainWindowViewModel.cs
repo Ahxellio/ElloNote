@@ -25,6 +25,9 @@ using Brush = System.Windows.Media.Brush;
 using WPF.ColorPicker;
 using Xceed.Wpf.Toolkit;
 using WindowState = System.Windows.WindowState;
+using ElloNote.Models;
+using System.Reflection.Metadata;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace ElloNote.ViewModels
 {
@@ -53,44 +56,99 @@ namespace ElloNote.ViewModels
 
         #region Save/Open File Command
         /// <summary>SaveFileCMD</summary>
-
-        public ICommand SaveFileCommand { get; }
-        private void OnSaveFileCommandExecuted(object p)
-        {
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = "Text files (.txt)|*.txt|All files (*.*)|*.*";
-            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (dlg.ShowDialog() == true)
+        public string _fileName;
+        public string FileName { get => _fileName; set
             {
-                FileStream fs = new FileStream(dlg.FileName, FileMode.Create, FileAccess.Write);
+                Set(ref _fileName, value);
             }
         }
-        private bool CanSaveFileCommandExecute(object p) => true;
 
-        /// <summary>OpenFileCMD</summary>
+        #region Save File Command
+        public ICommand SaveFileCommand { get; }
+        private async void OnSaveFileCommandExecutedAsync(object p)
+        {
+            var file_name = p as string;
+            if (file_name == null)
+            {
+                var dlg = new SaveFileDialog();
+                dlg.Filter = "Text files (.txt)|*.txt|All files (*.*)|*.*";
+                dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                if (dlg.ShowDialog() != true) return;
+                file_name = dlg.FileName;
+            }
+            using (var writer = new StreamWriter(new FileStream(file_name, FileMode.Create, FileAccess.Write)))
+            {
+                await writer.WriteAsync(_Notes).ConfigureAwait(false);
+            }
+            MessageBox.Show("Text File Saved");
+        }
+        private bool CanSaveFileCommandExecute(object p) 
+        {
+            return !string.IsNullOrEmpty(_Notes);
+        }
+        #endregion
+
+        #region OpenFileCMD
 
         public ICommand OpenFileCommand { get; }
         private void OnOpenFileCommandExecuted(object p)
         {
-            OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Text files (.txt)|*.txt|All files (*.*)|*.*";
-            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (dlg.ShowDialog() == true)
+            var file_name = p as string;
+            if (file_name == null)
             {
-                FileStream fs = new FileStream(dlg.FileName, FileMode.Open);
+                var dlg = new OpenFileDialog();
+                dlg.Filter = "Text files (.txt)|*.txt|All files (*.*)|*.*";
+                dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                if (dlg.ShowDialog() != true) return;
+                file_name = dlg.FileName;
             }
+            using (var reader = new StreamReader(new FileStream(file_name, FileMode.Open, FileAccess.Read)))
+            {
+                Notes = reader.ReadToEnd();
+            }
+
         }
         private bool CanOpenFileCommandExecute(object p) => true;
         #endregion
 
+        #endregion
+
         #region ColorPicker
+        //ColorModel colorModel = new ColorModel();
+        private Color _SelectedColor;
+        public Color SelectedColor
+        {
+
+            get 
+            {
+                //_SelectedColor = colorModel.color;
+                return _SelectedColor; 
+            }
+            set
+            {
+                //_SelectedColor = colorModel.color;
+                Set(ref _SelectedColor, value);
+            }
+        }
+
+
+        private Brush _brushColor;
+        public Brush BrushColor
+        {
+            get { _brushColor = new SolidColorBrush(SelectedColor); return _brushColor; }
+            set
+            {
+                _brushColor = new SolidColorBrush(SelectedColor);
+                Set(ref _brushColor, value);
+            }
+        }
 
         #endregion
 
         #region FontSizeProp
 
         /// <summary>FontSize Values</summary>
-        private List<int> _SourceList = new List<int> { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
+        private List<int> _SourceList = new List<int> { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72, 96 };
         public List<int> SourceList
         {
             get { return _SourceList; }
@@ -104,22 +162,7 @@ namespace ElloNote.ViewModels
 
 
        /// <summary></summary>
-        public ICommand MoveApplicationCommand { get; }
-        private void OnMoveApplicationCommandExecuted(object p)
-        {
-            var window = p as Window;
-            window?.DragMove();
-        }
-        private bool CanMoveApplicationCommandExecute(object p) => true;
-
-
-        public ICommand FontColorChangeCommand { get; }
-        private void OnFontColorChangeCommandExecuted(object p)
-        {
-
-        }
-        private bool CanColorChangeCommandExecute(object p) => true;
-
+       
 
         private string _Notes;
 
@@ -129,9 +172,12 @@ namespace ElloNote.ViewModels
         public MainWindowViewModel()
         {
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
-            SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecuted, CanSaveFileCommandExecute);
+            SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecutedAsync, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
             MinimizedApplicationCommand = new LambdaCommand(OnMinimizedApplicationCommandExecuted, CanMinimizedApplicationCommandExecute);
+            
+            
+            
     }
     }
 }
