@@ -25,7 +25,6 @@ using Brush = System.Windows.Media.Brush;
 using WPF.ColorPicker;
 using Xceed.Wpf.Toolkit;
 using WindowState = System.Windows.WindowState;
-using ElloNote.Models;
 using System.Reflection.Metadata;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
@@ -81,6 +80,13 @@ namespace ElloNote.ViewModels
                 await writer.WriteAsync(_Notes).ConfigureAwait(false);
             }
             MessageBox.Show("Text File Saved");
+            //var document = p as FlowDocument;
+            //TextRange range;
+            //FileStream fStream;
+            //range = new TextRange(document.ContentStart, document.ContentEnd);
+            //fStream = new FileStream(_fileName, FileMode.Create);
+            //range.Save(fStream, DataFormats.XamlPackage);
+            //fStream.Close();
         }
         private bool CanSaveFileCommandExecute(object p) 
         {
@@ -89,6 +95,7 @@ namespace ElloNote.ViewModels
         #endregion
 
         #region OpenFileCMD
+
 
         public ICommand OpenFileCommand { get; }
         private void OnOpenFileCommandExecuted(object p)
@@ -106,6 +113,16 @@ namespace ElloNote.ViewModels
             {
                 Notes = reader.ReadToEnd();
             }
+            //var document = p as FlowDocument;
+            //TextRange range;
+            //FileStream fStream;
+            //if (File.Exists(_fileName))
+            //{
+            //    range = new TextRange(document.ContentStart, document.ContentEnd);
+            //    fStream = new FileStream(_fileName, FileMode.OpenOrCreate);
+            //    range.Load(fStream, DataFormats.XamlPackage);
+            //    fStream.Close();
+            //}
 
         }
         private bool CanOpenFileCommandExecute(object p) => true;
@@ -135,11 +152,16 @@ namespace ElloNote.ViewModels
         private Brush _brushColor;
         public Brush BrushColor
         {
-            get { _brushColor = new SolidColorBrush(SelectedColor); return _brushColor; }
+            get 
+            { 
+                return _brushColor; 
+            }
             set
             {
-                _brushColor = new SolidColorBrush(SelectedColor);
+                SolidColorBrush brush = new SolidColorBrush(_SelectedColor);
+                _brushColor = brush;
                 Set(ref _brushColor, value);
+
             }
         }
 

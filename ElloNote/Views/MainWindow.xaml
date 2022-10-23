@@ -180,13 +180,13 @@
                                          Content="B" FontWeight="ExtraBold"
                                          Style="{StaticResource toggleButton}"
                                          Command="EditingCommands.ToggleBold"
-                                         CommandTarget="{Binding ElementName=richTextBox}"
+                                         CommandTarget="{Binding ElementName=MainTextBox}"
                                          
                                          />
 
                                 <ToggleButton x:Name="obliqueTextButton"
                                           Command="EditingCommands.ToggleItalic" 
-                                          CommandTarget="{Binding ElementName=richTextBox}"
+                                          CommandTarget="{Binding ElementName=MainTextBox}"
                                          
                                          Style="{StaticResource toggleButton}" FontStyle="Italic" Content="K">
                                 </ToggleButton>
@@ -195,7 +195,7 @@
                                          FontWeight="Regular" 
                                          Style="{StaticResource toggleButton}"
                                          Command="EditingCommands.ToggleUnderline" 
-                                         CommandTarget="{Binding ElementName=richTextBox}">
+                                         CommandTarget="{Binding ElementName=MainTextBox}">
                                     <TextBlock Text="U" TextDecorations="Underline"/>
                                 </ToggleButton>
                             </ToolBar>
@@ -214,7 +214,7 @@
                     <Border Grid.Column="1" Grid.Row="2" Margin="0,1,0,0">
                         <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 
-                            <TextBox x:Name="TextBox" Background="Transparent" BorderBrush="Transparent" 
+                            <xctk:RichTextBox x:Name="MainTextBox" Background="Transparent" BorderBrush="Transparent" 
                                          Width="Auto" Height="Auto" BorderThickness="0"
                                          Foreground="Black" 
                                          FontSize="{Binding SelectedFontSize}"
@@ -222,13 +222,17 @@
                                          Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"
                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                                          >
-                                
-                                <TextBox.CommandBindings>
+
+                                <xctk:RichTextBox.CommandBindings>
                                     <CommandBinding Command="EditingCommands.ToggleBold"/>
                                     <CommandBinding Command="EditingCommands.ToggleItalic"/>
                                     <CommandBinding Command="EditingCommands.ToggleUnderline" />
-                                </TextBox.CommandBindings>
-                            </TextBox>
+                                </xctk:RichTextBox.CommandBindings>
+                                <xctk:RichTextBox.TextFormatter>
+                                    <xctk:PlainTextFormatter/>
+                                </xctk:RichTextBox.TextFormatter>
+                            </xctk:RichTextBox>
+                            
                         </DockPanel>
 
                     </Border>
