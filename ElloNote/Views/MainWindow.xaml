@@ -123,7 +123,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="25"/>
-                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="30"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel x:Name="pnlControlBar" Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft"
@@ -176,18 +176,21 @@
                                       ItemsSource="{Binding SourceList}" Margin="1,0,0,0" SelectedIndex="4" 
                                       SelectedItem="{Binding SelectedFontSize}"/>
                             <ToolBar Style="{DynamicResource dashboardToolBarStyle}"  Background="Transparent" ToolBarTray.IsLocked="True">
+
+
+
                                 <ToggleButton x:Name="boldTextButton"
                                          Content="B" FontWeight="ExtraBold"
                                          Style="{StaticResource toggleButton}"
                                          Command="EditingCommands.ToggleBold"
                                          CommandTarget="{Binding ElementName=MainTextBox}"
-                                         
+                                         ToolTip="Bold"
                                          />
 
-                                <ToggleButton x:Name="obliqueTextButton"
+                                <ToggleButton x:Name="ItalicTextButton"
                                           Command="EditingCommands.ToggleItalic" 
                                           CommandTarget="{Binding ElementName=MainTextBox}"
-                                         
+                                         ToolTip="Italic"
                                          Style="{StaticResource toggleButton}" FontStyle="Italic" Content="K">
                                 </ToggleButton>
 
@@ -195,9 +198,364 @@
                                          FontWeight="Regular" 
                                          Style="{StaticResource toggleButton}"
                                          Command="EditingCommands.ToggleUnderline" 
-                                         CommandTarget="{Binding ElementName=MainTextBox}">
+                                         CommandTarget="{Binding ElementName=MainTextBox}"
+                                         ToolTip="Underline">
                                     <TextBlock Text="U" TextDecorations="Underline"/>
                                 </ToggleButton>
+                                <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
+                                    <!--#region List Bulets-->
+                                    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                        <Canvas Name="svg49" Width="256" Height="256" Background="{StaticResource plainTextColor1}">
+                                            <Canvas.RenderTransform>
+                                                <TranslateTransform X="0" Y="0"/>
+                                            </Canvas.RenderTransform>
+                                            <Canvas.Resources/>
+                                            <!--Unknown tag: sodipodi:namedview-->
+                                            <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  Width="256" Height="256"  Name="rect35"/>
+                                            <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="88" Y1="64" X2="216" Y2="64" Name="line37" StrokeThickness="8" Stroke="#FF000000" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                                            <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="88.006" Y1="128" X2="216" Y2="128" Name="line39" StrokeThickness="8" Stroke="#FF000000" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                                            <Line xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" X1="88.006" Y1="192" X2="216" Y2="192" Name="line41" StrokeThickness="8" Stroke="#FF000000" StrokeLineJoin="Round" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                                            <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="36" Canvas.Top="120" Width="16" Height="16" Name="circle43" Fill="#000000"/>
+                                            <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="36" Canvas.Top="56" Width="16" Height="16" Name="circle45" Fill="#000000"/>
+                                            <Ellipse xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="36" Canvas.Top="184" Width="16" Height="16" Name="circle47" Fill="#000000"/>
+                                            <!--Unknown tag: metadata-->
+                                        </Canvas>
+                                    </Viewbox>
+                                    <!--#endregion-->
+                                </Button>
+                                <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
+                                    <!--#region List Numbering-->
+                                    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                        <Canvas Name="Capa_1" Width="94.479" Height="94.479" Canvas.Left="0" Canvas.Top="0" >
+                                            <Canvas.RenderTransform>
+                                                <TranslateTransform X="0" Y="0"/>
+                                            </Canvas.RenderTransform>
+                                            <Canvas.Resources/>
+                                            <!--Unknown tag: sodipodi:namedview-->
+                                            <Canvas Name="g240">
+                                                <Canvas Name="g238">
+                                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path226" Fill="{StaticResource plainTextColor1}">
+                                                        <Path.Data>
+                                                            <PathGeometry Figures="M92.479 6.821H26.823c-1.104 0-2 0.896-2 2V19.58c0 1.104 0.896 2 2 2h65.656c1.104 0 2-0.896 2-2V8.821    C94.479 7.717 93.584 6.821 92.479 6.821z" FillRule="NonZero"/>
+                                                        </Path.Data>
+                                                    </Path>
+                                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path228" Fill="{StaticResource plainTextColor1}">
+                                                        <Path.Data>
+                                                            <PathGeometry Figures="M92.479 40.457H26.823c-1.104 0-2 0.896-2 2v10.761c0 1.104 0.896 2 2 2h65.656c1.104 0 2-0.896 2-2V42.457    C94.479 41.352 93.584 40.457 92.479 40.457z" FillRule="NonZero"/>
+                                                        </Path.Data>
+                                                    </Path>
+                                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path230" Fill="{StaticResource plainTextColor1}">
+                                                        <Path.Data>
+                                                            <PathGeometry Figures="M92.479 75.109H26.823c-1.104 0-2 0.896-2 2v10.759c0 1.104 0.896 2 2 2h65.656c1.104 0 2-0.896 2-2V77.109    C94.479 76.004 93.584 75.109 92.479 75.109z" FillRule="NonZero"/>
+                                                        </Path.Data>
+                                                    </Path>
+                                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path232" Fill="{StaticResource plainTextColor1}">
+                                                        <Path.Data>
+                                                            <PathGeometry Figures="M1.842 11.104c0.423 0.051 0.848-0.08 1.167-0.36l0.914-0.799v12.973c0 0.828 0.672 1.5 1.5 1.5h1.546    c0.828 0 1.5-0.672 1.5-1.5V5.567c0-0.828-0.672-1.5-1.5-1.5H5.378c-0.356 0-0.701 0.127-0.973 0.358L0.527 7.728    c-0.589 0.501-0.7 1.369-0.256 2.003l0.522 0.745C1.04 10.825 1.42 11.053 1.842 11.104z" FillRule="NonZero"/>
+                                                        </Path.Data>
+                                                    </Path>
+                                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path234" Fill="{StaticResource plainTextColor1}">
+                                                        <Path.Data>
+                                                            <PathGeometry Figures="M2.546 37.5c-0.647 0.23-1.056 0.872-0.99 1.556l0.096 0.999c0.048 0.497 0.339 0.938 0.778 1.176    c0.438 0.238 0.967 0.243 1.409 0.011c1.18-0.615 1.923-0.775 2.922-0.534c0.71 0.163 1.188 0.586 1.438 1.225    c0.378 1.143 0.395 2.957-2.854 6.873l-2.506 2.996c-0.589 0.688-0.99 1.119-1.302 1.404c-0.312 0.284-0.488 0.688-0.488 1.107    v1.475c0 0.828 0.672 1.5 1.5 1.5h9.132c0.828 0 1.5-0.672 1.5-1.5V55.01c0-0.828-0.672-1.5-1.5-1.5H6.896    c0.458-0.515 1.037-1.211 1.716-2.063c2.803-3.468 5.061-6.645 4.292-10.376c-0.309-1.672-1.247-2.966-2.731-3.752    c-0.826-0.424-1.879-0.639-3.127-0.639C5.629 36.68 4.031 36.971 2.546 37.5z" FillRule="NonZero"/>
+                                                        </Path.Data>
+                                                    </Path>
+                                                    <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path236" Fill="{StaticResource plainTextColor1}">
+                                                        <Path.Data>
+                                                            <PathGeometry Figures="M10.491 79.516c0.25-0.135 0.487-0.289 0.74-0.483c1.718-1.313 1.801-3.335 1.786-3.885    c-0.001-1.878-0.712-3.318-2.166-4.401c-1.026-0.77-2.534-1.177-4.361-1.177c-1.347 0-2.787 0.212-4.057 0.596    c-0.668 0.202-1.107 0.839-1.063 1.533l0.058 0.88c0.031 0.471 0.28 0.896 0.673 1.155c0.394 0.259 0.886 0.319 1.327 0.159    c0.864-0.307 1.571-0.45 2.223-0.45c0.229 0 0.457 0.019 0.722 0.063c0.94 0.127 1.563 0.549 1.9 1.283    c0.237 0.52 0.19 1.445-0.083 1.885c-0.654 1.014-2.438 1.217-3.443 1.25c-0.81 0.024-1.453 0.688-1.453 1.498v0.658    c0 0.828 0.687 1.5 1.515 1.5c1.575 0 2.311 0.309 2.596 0.485c0.737 0.465 1.065 1.043 1.066 1.918    c0.025 0.912-0.348 1.606-1.129 2.121c-1.014 0.651-2.64 0.647-4.505 0.032c-0.438-0.146-0.918-0.082-1.302 0.175    c-0.384 0.255-0.629 0.672-0.665 1.132l-0.068 0.872C0.75 88.973 1.135 89.588 1.75 89.83c0.33 0.13 0.551 0.183 1.022 0.281    c0.857 0.196 1.84 0.302 2.842 0.302c1.493 0 4.248-0.247 5.944-1.919c1.657-1.69 1.974-4.11 1.56-5.729    C12.636 80.704 11.461 79.946 10.491 79.516z" FillRule="NonZero"/>
+                                                        </Path.Data>
+                                                    </Path>
+                                                </Canvas>
+                                            </Canvas>
+                                            <Canvas Name="g242"/>
+                                            <Canvas Name="g244"/>
+                                            <Canvas Name="g246"/>
+                                            <Canvas Name="g248"/>
+                                            <Canvas Name="g250"/>
+                                            <Canvas Name="g252"/>
+                                            <Canvas Name="g254"/>
+                                            <Canvas Name="g256"/>
+                                            <Canvas Name="g258"/>
+                                            <Canvas Name="g260"/>
+                                            <Canvas Name="g262"/>
+                                            <Canvas Name="g264"/>
+                                            <Canvas Name="g266"/>
+                                            <Canvas Name="g268"/>
+                                            <Canvas Name="g270"/>
+                                            <!--Unknown tag: metadata-->
+                                        </Canvas>
+                                    </Viewbox>
+                                    <!--#endregion-->
+                                </Button>
+                                <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignLeft" ToolTip="Align Left">
+                                    <!--#region Align Left-->
+                                    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                        <Canvas Name="Layer_1" Canvas.Left="0" Canvas.Top="0" Width="486" Height="486">
+                                            <Canvas.RenderTransform>
+                                                <TranslateTransform X="0" Y="0"/>
+                                            </Canvas.RenderTransform>
+                                            <Canvas.Resources/>
+                                            <Canvas Name="AlignLeft">
+                                                <Canvas Name="g386">
+                                                    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="68" Canvas.Top="7.5" Width="350" Height="471" Name="rect384" Fill="{StaticResource plainTextColor1}"/>
+                                                </Canvas>
+                                                <Canvas Name="g392">
+                                                    <Canvas Name="g390">
+                                                        <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path388" Fill="#000000">
+                                                            <Path.Data>
+                                                                <PathGeometry Figures="M425.5 486h-365V0h365V486z M75.5 471h335V15h-335V471z" FillRule="NonZero"/>
+                                                            </Path.Data>
+                                                        </Path>
+                                                    </Canvas>
+                                                </Canvas>
+                                            </Canvas>
+                                            <Canvas Name="g423">
+                                                <Canvas Name="g397">
+                                                    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="56" Width="270" Height="15" Name="rect395" Fill="#000000"/>
+                                                </Canvas>
+                                                <Canvas Name="g401">
+                                                    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="116" Width="135" Height="15" Name="rect399" Fill="#000000"/>
+                                                </Canvas>
+                                                <Canvas Name="g405">
+                                                    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="176" Width="270" Height="15" Name="rect403" Fill="#000000"/>
+                                                </Canvas>
+                                                <Canvas Name="g409">
+                                                    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="236" Width="135" Height="15" Name="rect407" Fill="#000000"/>
+                                                </Canvas>
+                                                <Canvas Name="g413">
+                                                    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="296" Width="270" Height="15" Name="rect411" Fill="#000000"/>
+                                                </Canvas>
+                                                <Canvas Name="g417">
+                                                    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="356" Width="135" Height="15" Name="rect415" Fill="#000000"/>
+                                                </Canvas>
+                                                <Canvas Name="g421">
+                                                    <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="416" Width="270" Height="15" Name="rect419" Fill="#000000"/>
+                                                </Canvas>
+                                            </Canvas>
+                                            <Canvas Name="g425"/>
+                                            <Canvas Name="g427"/>
+                                            <Canvas Name="g429"/>
+                                            <Canvas Name="g431"/>
+                                            <Canvas Name="g433"/>
+                                            <Canvas Name="g435"/>
+                                            <Canvas Name="g437"/>
+                                            <Canvas Name="g439"/>
+                                            <Canvas Name="g441"/>
+                                            <Canvas Name="g443"/>
+                                            <Canvas Name="g445"/>
+                                            <Canvas Name="g447"/>
+                                            <Canvas Name="g449"/>
+                                            <Canvas Name="g451"/>
+                                            <Canvas Name="g453"/>
+                                            <!--Unknown tag: metadata-->
+                                        </Canvas>
+                                    </Viewbox>
+                                    <!--#endregion-->
+                                </Button>
+                                <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignCenter" ToolTip="Align Center">
+                                    <!--#region Align Center-->
+                                    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                        <Canvas Name="Layer_2" Canvas.Left="0" Canvas.Top="0" Width="486" Height="486">
+                                            <Canvas.RenderTransform>
+                                                <TranslateTransform X="0" Y="0"/>
+                                            </Canvas.RenderTransform>
+                                            <Canvas.Resources/>
+                                            <!--Unknown tag: sodipodi:namedview-->
+                                            <Canvas Name="g826">
+                                                <Canvas Name="AlignCenter">
+                                                    <Canvas Name="g787">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="68" Canvas.Top="7.5" Width="350" Height="471" Name="rect785" Fill="{StaticResource plainTextColor1}"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g793">
+                                                        <Canvas Name="g791">
+                                                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path789" Fill="#000000">
+                                                                <Path.Data>
+                                                                    <PathGeometry Figures="M425.5 486h-365V0h365V486z M75.5 471h335V15h-335V471z" FillRule="NonZero"/>
+                                                                </Path.Data>
+                                                            </Path>
+                                                        </Canvas>
+                                                    </Canvas>
+                                                </Canvas>
+                                                <Canvas Name="g824">
+                                                    <Canvas Name="g798">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="56" Width="270" Height="15" Name="rect796" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g802">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="153" Canvas.Top="116" Width="180" Height="15" Name="rect800" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g806">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="176" Width="270" Height="15" Name="rect804" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g810">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="153" Canvas.Top="236" Width="180" Height="15" Name="rect808" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g814">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="296" Width="270" Height="15" Name="rect812" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g818">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="153" Canvas.Top="356" Width="180" Height="15" Name="rect816" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g822">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="416" Width="270" Height="15" Name="rect820" Fill="#000000"/>
+                                                    </Canvas>
+                                                </Canvas>
+                                            </Canvas>
+                                            <Canvas Name="g828"/>
+                                            <Canvas Name="g830"/>
+                                            <Canvas Name="g832"/>
+                                            <Canvas Name="g834"/>
+                                            <Canvas Name="g836"/>
+                                            <Canvas Name="g838"/>
+                                            <Canvas Name="g840"/>
+                                            <Canvas Name="g842"/>
+                                            <Canvas Name="g844"/>
+                                            <Canvas Name="g846"/>
+                                            <Canvas Name="g848"/>
+                                            <Canvas Name="g850"/>
+                                            <Canvas Name="g852"/>
+                                            <Canvas Name="g854"/>
+                                            <Canvas Name="g856"/>
+                                        </Canvas>
+                                    </Viewbox>
+                                    <!--#endregion-->
+                                </Button>
+                                <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignRight" ToolTip="Align Right">
+                                    <!--#region Align Right-->
+                                    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                        <Canvas Name="Layer_3" Canvas.Left="0" Canvas.Top="0" Width="486" Height="486">
+                                            <Canvas.RenderTransform>
+                                                <TranslateTransform X="0" Y="0"/>
+                                            </Canvas.RenderTransform>
+                                            <Canvas.Resources/>
+                                            <!--Unknown tag: sodipodi:namedview-->
+                                            <Canvas Name="g624">
+                                                <Canvas Name="AlignRight">
+                                                    <Canvas Name="g585">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="68" Canvas.Top="7.5" Width="350" Height="471" Name="rect583" Fill="{StaticResource plainTextColor1}"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g591">
+                                                        <Canvas Name="g589">
+                                                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path587" Fill="#000000">
+                                                                <Path.Data>
+                                                                    <PathGeometry Figures="M425.5 486h-365V0h365V486z M75.5 471h335V15h-335V471z" FillRule="NonZero"/>
+                                                                </Path.Data>
+                                                            </Path>
+                                                        </Canvas>
+                                                    </Canvas>
+                                                </Canvas>
+                                                <Canvas Name="g622">
+                                                    <Canvas Name="g596">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="107" Canvas.Top="56" Width="270" Height="15" Name="rect594" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g600">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="242" Canvas.Top="116" Width="135" Height="15" Name="rect598" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g604">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="107" Canvas.Top="176" Width="270" Height="15" Name="rect602" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g608">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="242" Canvas.Top="236" Width="135" Height="15" Name="rect606" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g612">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="107" Canvas.Top="296" Width="270" Height="15" Name="rect610" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g616">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="242" Canvas.Top="356" Width="135" Height="15" Name="rect614" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g620">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="107" Canvas.Top="416" Width="270" Height="15" Name="rect618" Fill="#000000"/>
+                                                    </Canvas>
+                                                </Canvas>
+                                            </Canvas>
+                                            <Canvas Name="g626"/>
+                                            <Canvas Name="g628"/>
+                                            <Canvas Name="g630"/>
+                                            <Canvas Name="g632"/>
+                                            <Canvas Name="g634"/>
+                                            <Canvas Name="g636"/>
+                                            <Canvas Name="g638"/>
+                                            <Canvas Name="g640"/>
+                                            <Canvas Name="g642"/>
+                                            <Canvas Name="g644"/>
+                                            <Canvas Name="g646"/>
+                                            <Canvas Name="g648"/>
+                                            <Canvas Name="g650"/>
+                                            <Canvas Name="g652"/>
+                                            <Canvas Name="g654"/>
+                                            <!--Unknown tag: metadata-->
+                                        </Canvas>
+                                    </Viewbox>
+                                    <!--#endregion-->
+
+                                </Button>
+                                <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignJustify" ToolTip="Align Justify">
+                                    <!--#region Full Align-->
+                                    <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
+                                        <Canvas Name="Layer_4" Canvas.Left="0" Canvas.Top="0" Width="486" Height="486">
+                                            <Canvas.RenderTransform>
+                                                <TranslateTransform X="0" Y="0"/>
+                                            </Canvas.RenderTransform>
+                                            <Canvas.Resources/>
+                                            <!--Unknown tag: sodipodi:namedview-->
+                                            <Canvas Name="g121">
+                                                <Canvas Name="XMLID_39_">
+                                                    <Canvas Name="g82">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="68" Canvas.Top="7.5" Width="350" Height="471" Name="rect80" Fill="{StaticResource plainTextColor1}"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g88">
+                                                        <Canvas Name="g86">
+                                                            <Path xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Name="path84" Fill="#000000">
+                                                                <Path.Data>
+                                                                    <PathGeometry Figures="M425.5 486h-365V0h365V486z M75.5 471h335V15h-335V471z" FillRule="NonZero"/>
+                                                                </Path.Data>
+                                                            </Path>
+                                                        </Canvas>
+                                                    </Canvas>
+                                                </Canvas>
+                                                <Canvas Name="g119">
+                                                    <Canvas Name="g93">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="56" Width="270" Height="15" Name="rect91" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g97">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="116" Width="270" Height="15" Name="rect95" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g101">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="176" Width="270" Height="15" Name="rect99" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g105">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="236" Width="270" Height="15" Name="rect103" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g109">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="296" Width="270" Height="15" Name="rect107" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g113">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="356" Width="270" Height="15" Name="rect111" Fill="#000000"/>
+                                                    </Canvas>
+                                                    <Canvas Name="g117">
+                                                        <Rectangle xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Canvas.Left="108" Canvas.Top="416" Width="270" Height="15" Name="rect115" Fill="#000000"/>
+                                                    </Canvas>
+                                                </Canvas>
+                                            </Canvas>
+                                            <Canvas Name="g123"/>
+                                            <Canvas Name="g125"/>
+                                            <Canvas Name="g127"/>
+                                            <Canvas Name="g129"/>
+                                            <Canvas Name="g131"/>
+                                            <Canvas Name="g133"/>
+                                            <Canvas Name="g135"/>
+                                            <Canvas Name="g137"/>
+                                            <Canvas Name="g139"/>
+                                            <Canvas Name="g141"/>
+                                            <Canvas Name="g143"/>
+                                            <Canvas Name="g145"/>
+                                            <Canvas Name="g147"/>
+                                            <Canvas Name="g149"/>
+                                            <Canvas Name="g151"/>
+                                            <!--Unknown tag: metadata-->
+                                        </Canvas>
+                                    </Viewbox>
+                                    <!--#endregion-->
+
+                                </Button>
                             </ToolBar>
 
                             <xctk:ColorPicker Width="20" SelectedColor="{Binding SelectedColor}"  ShowDropDownButton="False"
@@ -229,7 +587,7 @@
                                     <CommandBinding Command="EditingCommands.ToggleUnderline" />
                                 </xctk:RichTextBox.CommandBindings>
                                 <xctk:RichTextBox.TextFormatter>
-                                    <xctk:PlainTextFormatter/>
+                                    <xctk:RtfFormatter/>
                                 </xctk:RichTextBox.TextFormatter>
                             </xctk:RichTextBox>
                             
