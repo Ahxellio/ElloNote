@@ -1,6 +1,9 @@
 ﻿<Application x:Class="ElloNote.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:inf="clr-namespace:ElloNote.Infrastructure"
+             xmlns:vm="clr-namespace:ElloNote.ViewModels"
+             xmlns:views="clr-namespace:ElloNote.Views"
              xmlns:local="clr-namespace:ElloNote"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
@@ -11,6 +14,9 @@
                 <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/ToolBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type vm:MainWindowViewModel}">
+                <views:DrawWindow></views:DrawWindow>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

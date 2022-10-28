@@ -11,7 +11,8 @@
     <PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.4.0" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.1.1" />
-    <PackageReference Include="Haley.WPF" Version="5.2.17" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+    <PackageReference Include="MvvmNavigation.Wpf" Version="3.2.0" />
     <PackageReference Include="WPF.ColorPicker" Version="5.0.0.1" />
   </ItemGroup>
 

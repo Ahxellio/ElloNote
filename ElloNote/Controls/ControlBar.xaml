@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="ElloNote.Controls.ControlBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:cp="clr-namespace:ColorPickerLib.Behaviours;assembly=ColorPickerLib"
+            xmlns:cpwpf="clr-namespace:WPF.ColorPicker;assembly=WPF.ColorPicker"
+            xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        
+            xmlns:nav="clr-namespace:ElloNote.State.Navigators"
+            xmlns:vm ="clr-namespace:ElloNote.ViewModels"
+            xmlns:views="clr-namespace:ElloNote.Views"
+            xmlns:local="clr-namespace:ElloNote"
+            mc:Ignorable="d"
+            Height="25" Width="1290"
+            Background="Transparent">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="pnlControlBar" Grid.Row="0" Orientation="Horizontal" FlowDirection="RightToLeft"
+                        Background="Transparent" Margin="0,0,3,0"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+            <Button x:Name="closeButton" Style="{StaticResource controlBarButton}" 
+                                Tag="{StaticResource color4}" Command="{Binding CloseApplicationCommand}" Width="40">
+                <fa:IconImage Icon="Close" Style="{StaticResource controlBarButtonIcon}"/>
+            </Button>
+
+            <Button x:Name="minimizeButton" Style="{StaticResource controlBarButton}" 
+                                Tag="{StaticResource color4}" Command="{Binding MinimizedApplicationCommand}">
+                <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlBarButtonIcon}"/>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

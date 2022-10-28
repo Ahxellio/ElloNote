@@ -27,11 +27,14 @@ using Xceed.Wpf.Toolkit;
 using WindowState = System.Windows.WindowState;
 using System.Reflection.Metadata;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
+using ElloNote.State.Navigators;
 
 namespace ElloNote.ViewModels
 {
     internal class MainWindowViewModel : BaseVM
     {
+
+
         #region Команды
         #region Close/Minimized Window Commands
         /// <summary>CloseApplicationCMD</summary>
@@ -80,13 +83,6 @@ namespace ElloNote.ViewModels
                 await writer.WriteAsync(_Notes).ConfigureAwait(false);
             }
             MessageBox.Show("Text File Saved");
-            //var document = p as FlowDocument;
-            //TextRange range;
-            //FileStream fStream;
-            //range = new TextRange(document.ContentStart, document.ContentEnd);
-            //fStream = new FileStream(_fileName, FileMode.Create);
-            //range.Save(fStream, DataFormats.XamlPackage);
-            //fStream.Close();
         }
         private bool CanSaveFileCommandExecute(object p) 
         {
@@ -113,16 +109,6 @@ namespace ElloNote.ViewModels
             {
                 Notes = reader.ReadToEnd();
             }
-            //var document = p as FlowDocument;
-            //TextRange range;
-            //FileStream fStream;
-            //if (File.Exists(_fileName))
-            //{
-            //    range = new TextRange(document.ContentStart, document.ContentEnd);
-            //    fStream = new FileStream(_fileName, FileMode.OpenOrCreate);
-            //    range.Load(fStream, DataFormats.XamlPackage);
-            //    fStream.Close();
-            //}
 
         }
         private bool CanOpenFileCommandExecute(object p) => true;
@@ -138,12 +124,10 @@ namespace ElloNote.ViewModels
 
             get 
             {
-                //_SelectedColor = colorModel.color;
                 return _SelectedColor; 
             }
             set
             {
-                //_SelectedColor = colorModel.color;
                 Set(ref _SelectedColor, value);
             }
         }
@@ -180,11 +164,10 @@ namespace ElloNote.ViewModels
         public int SelectedFontSize { get => _SelectedFontSize; set { Set(ref _SelectedFontSize, value); } }
         #endregion
 
- 
 
 
-       /// <summary></summary>
-       
+        public INavigator Navigator { get; set; } = new Navigator();
+
 
         private string _Notes;
 
@@ -197,9 +180,8 @@ namespace ElloNote.ViewModels
             SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecutedAsync, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
             MinimizedApplicationCommand = new LambdaCommand(OnMinimizedApplicationCommandExecuted, CanMinimizedApplicationCommandExecute);
-            
-            
-            
-    }
+
+
+        }
     }
 }
