@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ElloNote.Controls
+namespace ElloNote.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Main.xaml
+    /// Логика взаимодействия для SettingsPage.xaml
     /// </summary>
-    public partial class Main : UserControl
+    public partial class SettingsPage : UserControl
     {
-        public Main()
+        public SettingsPage()
         {
             InitializeComponent();
         }

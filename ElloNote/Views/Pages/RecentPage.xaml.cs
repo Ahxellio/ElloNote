@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ElloNote.Views
+namespace ElloNote.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для DrawWindow.xaml
+    /// Логика взаимодействия для RecentPage.xaml
     /// </summary>
-    public partial class DrawWindow : Window
+    public partial class RecentPage : UserControl
     {
-        public DrawWindow()
+        public RecentPage()
         {
             InitializeComponent();
         }

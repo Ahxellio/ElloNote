@@ -164,23 +164,26 @@ namespace ElloNote.ViewModels
         public int SelectedFontSize { get => _SelectedFontSize; set { Set(ref _SelectedFontSize, value); } }
         #endregion
 
-
-
+        #region Navigator
         public INavigator Navigator { get; set; } = new Navigator();
+        //public ICommand ApplicationStateCommand { get; set; } = new ControlBarCommands();
+        
 
+        #endregion
 
+        #region Text
         private string _Notes;
 
         public string Notes { get => _Notes; set => Set(ref _Notes, value); }
         #endregion
 
+
+
+        #endregion
         public MainWindowViewModel()
         {
-            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
             SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecutedAsync, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
-            MinimizedApplicationCommand = new LambdaCommand(OnMinimizedApplicationCommandExecuted, CanMinimizedApplicationCommandExecute);
-
 
         }
     }

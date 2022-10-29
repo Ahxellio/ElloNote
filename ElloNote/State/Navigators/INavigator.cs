@@ -12,6 +12,11 @@ namespace ElloNote.State.Navigators
     {
         Main,
         Draw,
+        Start,
+        View,
+        Search,
+        Recent,
+        Settings
     }
     internal interface INavigator
     {

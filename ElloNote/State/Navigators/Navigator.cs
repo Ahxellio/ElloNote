@@ -11,13 +11,12 @@ namespace ElloNote.State.Navigators
 {
     internal class Navigator : BaseVM, INavigator
     {
-        private BaseVM _viewModel;
-        public BaseVM viewModel
+        private BaseVM _currentViewModel;
+        public BaseVM CurrentViewModel
         {
-            get { return _viewModel; }
-            set { Set(ref _viewModel, value); }
+            get { return _currentViewModel; }
+            set { Set(ref _currentViewModel, value); }
         }
-        public BaseVM CurrentViewModel { get; set; }
 
         public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this);
     }

@@ -10,14 +10,11 @@
         
             xmlns:nav="clr-namespace:ElloNote.State.Navigators"
             xmlns:vm ="clr-namespace:ElloNote.ViewModels"
-            xmlns:views="clr-namespace:ElloNote.Views"
+            xmlns:views="clr-namespace:ElloNote.Views.Pages"
             xmlns:local="clr-namespace:ElloNote"
             mc:Ignorable="d"
             Height="760" Width="150"
             Background="Transparent">
-    <UserControl.DataContext>
-        <nav:Navigator/>
-    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -60,28 +57,36 @@
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color9}">
+                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color9}"
+                             Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.View}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <fa:IconImage Icon="Eye"  Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="View" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color2}">
+                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color2}"
+                             Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Search}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <fa:IconImage Icon="Search"  Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="Search" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color3}">
+                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color3}"
+                             Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Recent}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <fa:IconImage Icon="Clock"  Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="Recent" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color7}">
+                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color7}"
+                             Command="{Binding UpdateCurrentViewModelCommand}"
+                              CommandParameter="{x:Static nav:ViewType.Settings}">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <fa:IconImage Icon="Tools"  Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="Settings" Style="{StaticResource menuButtonText}"/>

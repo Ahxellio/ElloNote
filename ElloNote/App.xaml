@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:inf="clr-namespace:ElloNote.Infrastructure"
              xmlns:vm="clr-namespace:ElloNote.ViewModels"
-             xmlns:views="clr-namespace:ElloNote.Views"
+             xmlns:views="clr-namespace:ElloNote.Views.Pages"
              xmlns:local="clr-namespace:ElloNote"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
@@ -15,7 +15,25 @@
                 <ResourceDictionary Source="/Styles/ToolBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type vm:MainWindowViewModel}">
-                <views:DrawWindow></views:DrawWindow>
+                <views:MainView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DrawWindowViewModel}">
+                <views:Draw/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:StartPageViewModel}">
+                <views:StartPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsPageViewModel}">
+                <views:SettingsPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SearchPageViewModel}">
+                <views:SearchPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ViewPageViewModel}">
+                <views:ViewPage/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:RecentPageViewModel}">
+                <views:RecentPage/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

@@ -10,11 +10,14 @@
         
             xmlns:nav="clr-namespace:ElloNote.State.Navigators"
             xmlns:vm ="clr-namespace:ElloNote.ViewModels"
-            xmlns:views="clr-namespace:ElloNote.Views"
+            xmlns:views="clr-namespace:ElloNote.Views.Pages"
             xmlns:local="clr-namespace:ElloNote"
             mc:Ignorable="d"
             Height="25" Width="1290"
             Background="Transparent">
+    <UserControl.DataContext>
+        <vm:MainWindowViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>

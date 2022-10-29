@@ -38,6 +38,21 @@ namespace ElloNote.Infrastructure
                     case ViewType.Draw:
                         _navigator.CurrentViewModel = new DrawWindowViewModel();
                         break;
+                    case ViewType.Start:
+                        _navigator.CurrentViewModel = new StartPageViewModel();
+                        break;
+                    case ViewType.View:
+                        _navigator.CurrentViewModel = new ViewPageViewModel();
+                        break;
+                    case ViewType.Search:
+                        _navigator.CurrentViewModel = new SearchPageViewModel();
+                        break;
+                    case ViewType.Recent:
+                        _navigator.CurrentViewModel = new RecentPageViewModel();
+                        break;
+                    case ViewType.Settings:
+                        _navigator.CurrentViewModel = new SettingsPageViewModel();
+                        break;
                     default:
                         break;
                 }

@@ -10,7 +10,7 @@
         xmlns:controls="clr-namespace:ElloNote.Controls"
         xmlns:nav="clr-namespace:ElloNote.State.Navigators"
         xmlns:vm ="clr-namespace:ElloNote.ViewModels"
-        xmlns:views="clr-namespace:ElloNote.Views"
+        xmlns:views="clr-namespace:ElloNote.Views.Pages"
         xmlns:local="clr-namespace:ElloNote"
         mc:Ignorable="d"
         Title="ElloNote" Height="760" Width="1440" WindowStyle="None" WindowStartupLocation="CenterScreen"
@@ -19,14 +19,15 @@
       
         >
     <Window.DataContext>
-        <nav:Navigator/>
+        <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <controls:NavigationBar Grid.Column="0"/>
-        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
+        <controls:NavigationBar Grid.Column="0" DataContext="{Binding Navigator}"/>
+        <ContentControl Grid.Column="1" Content="{Binding Navigator.CurrentViewModel}" 
+                       />
     </Grid>
 </Window>
