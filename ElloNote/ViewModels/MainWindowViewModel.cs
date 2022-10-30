@@ -36,24 +36,6 @@ namespace ElloNote.ViewModels
 
 
         #region Команды
-        #region Close/Minimized Window Commands
-        /// <summary>CloseApplicationCMD</summary>
-
-        public ICommand CloseApplicationCommand { get; }
-        private void OnCloseApplicationCommandExecuted(object p)
-        {
-            Application.Current.Shutdown();
-        }
-        private bool CanCloseApplicationCommandExecute(object p) => true;
-
-        /// <summary>MinimizeApplicationCMD</summary>
-        public ICommand MinimizedApplicationCommand { get; }
-        private void OnMinimizedApplicationCommandExecuted(object p)
-        {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
-        }
-        private bool CanMinimizedApplicationCommandExecute(object p) => true;
-        #endregion
 
 
         #region Save/Open File Command
@@ -166,7 +148,6 @@ namespace ElloNote.ViewModels
 
         #region Navigator
         public INavigator Navigator { get; set; } = new Navigator();
-        //public ICommand ApplicationStateCommand { get; set; } = new ControlBarCommands();
         
 
         #endregion
@@ -179,12 +160,12 @@ namespace ElloNote.ViewModels
 
 
 
+
         #endregion
         public MainWindowViewModel()
         {
             SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecutedAsync, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
-
         }
     }
 }

@@ -33,7 +33,7 @@
                 <views:ViewPage/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:RecentPageViewModel}">
-                <views:RecentPage/>
+                <views:StartPage/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

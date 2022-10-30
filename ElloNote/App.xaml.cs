@@ -19,6 +19,6 @@ namespace ElloNote
     /// </summary>
     public partial class App : Application
     {
-        
+
     }
 }

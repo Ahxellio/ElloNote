@@ -37,7 +37,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <xctk:DropDownButton/>
+            <xctk:ButtonChrome/>
 
         </Grid>
     </Grid>
