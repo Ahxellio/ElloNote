@@ -475,9 +475,10 @@
                 <Border Grid.Column="1" Grid.Row="2" Margin="0,1,0,0">
                     <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 
-                        <xctk:RichTextBox x:Name="MainTextBox" Background="Transparent" BorderBrush="Transparent" 
+                        <xctk:RichTextBox x:Name="MainTextBox" Background="Transparent" 
+                                         BorderBrush="Transparent"
                                          Width="Auto" Height="Auto" BorderThickness="0"
-                                         Foreground="White" 
+                                         Foreground="White" Margin="5,5,5,5"
                                          FontSize="{Binding SelectedFontSize}"
                                          FontFamily="{Binding Path=SelectedItem, ElementName=fontsComboBox}"
                                          Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"

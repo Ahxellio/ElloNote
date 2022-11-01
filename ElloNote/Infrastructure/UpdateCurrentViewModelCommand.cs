@@ -2,6 +2,7 @@
 using ElloNote.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,6 @@ namespace ElloNote.Infrastructure
         {
             _navigator = navigator;
         }
-
         public bool CanExecute(object? parameter)
         {
             return true;

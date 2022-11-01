@@ -49,7 +49,7 @@ namespace ElloNote.ViewModels
 
         #region Save File Command
         public ICommand SaveFileCommand { get; }
-        private async void OnSaveFileCommandExecutedAsync(object p)
+        private void OnSaveFileCommandExecutedAsync(object p)
         {
             var file_name = p as string;
             if (file_name == null)
@@ -62,7 +62,7 @@ namespace ElloNote.ViewModels
             }
             using (var writer = new StreamWriter(new FileStream(file_name, FileMode.Create, FileAccess.Write)))
             {
-                await writer.WriteAsync(_Notes).ConfigureAwait(false);
+                writer.Write(_Notes);
             }
             MessageBox.Show("Text File Saved");
         }
@@ -156,6 +156,7 @@ namespace ElloNote.ViewModels
         private string _Notes;
 
         public string Notes { get => _Notes; set => Set(ref _Notes, value); }
+
         #endregion
 
 

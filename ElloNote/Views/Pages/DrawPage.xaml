@@ -13,6 +13,9 @@
             xmlns:local="clr-namespace:ElloNote.Views.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="760" d:DesignWidth="1290" Background="Transparent">
+    <UserControl.DataContext>
+        <vm:DrawWindowViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Border CornerRadius="0,10,10,0">
             <Border.Background>
@@ -29,7 +32,13 @@
                 </Grid.RowDefinitions>
 
                 <controls:ControlBar Grid.Column="1" Grid.Row="0"/>
-                <InkCanvas Grid.Row="2"  />
+                <StackPanel Grid.Row="1">
+                    <ComboBox x:Name="valuesComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
+                                      ItemsSource="{Binding CanvasEditingModes}"
+                                      Margin="1,0,0,0" SelectedIndex="0" Foreground="AliceBlue"
+                                      SelectedItem="{Binding SelectedDrawingMode}"/>
+                </StackPanel>
+                <InkCanvas Grid.Row="2" Background="Transparent" EditingMode="{Binding SelectedDrawingMode}" />
             </Grid>
         </Border>
     </Grid>
