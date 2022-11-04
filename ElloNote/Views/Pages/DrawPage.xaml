@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:cp="clr-namespace:ColorPickerLib.Behaviours;assembly=ColorPickerLib"
+            xmlns:cp="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
             xmlns:cpwpf="clr-namespace:WPF.ColorPicker;assembly=WPF.ColorPicker"
             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
             xmlns:controls="clr-namespace:ElloNote.Controls"
@@ -32,13 +32,32 @@
                 </Grid.RowDefinitions>
 
                 <controls:ControlBar Grid.Column="1" Grid.Row="0"/>
-                <StackPanel Grid.Row="1">
+                <DockPanel Grid.Row="1">
                     <ComboBox x:Name="valuesComboBox" Style="{StaticResource ComboBoxFlatStyle}" 
                                       ItemsSource="{Binding CanvasEditingModes}"
                                       Margin="1,0,0,0" SelectedIndex="0" Foreground="AliceBlue"
-                                      SelectedItem="{Binding SelectedDrawingMode}"/>
-                </StackPanel>
-                <InkCanvas Grid.Row="2" Background="Transparent" EditingMode="{Binding SelectedDrawingMode}" />
+                                      SelectedItem="{Binding SelectedDrawingMode}" Width="Auto"/>
+                    <Button x:Name="saveButton" Style="{StaticResource dashboardBarButton}" 
+                                Command="{Binding SaveFileCommand}">
+                        <fa:IconImage Icon="FileEdit" Style="{StaticResource dashboardBarButtonIcon}"/>
+                    </Button>
+
+                    <Button x:Name="openButton" Style="{StaticResource dashboardBarButton}" 
+                                Command="{Binding OpenFileCommand}">
+                        <fa:IconImage Icon="Folder" Style="{StaticResource dashboardBarButtonIcon}"/>
+                    </Button>
+
+                    <Polygon Fill="{StaticResource plainTextColor3}" StrokeThickness="1" 
+                                 Stroke="{StaticResource plainTextColor3}"
+                                     Points="0,0,0,35" Margin="3,0,0,0"/>
+                </DockPanel>
+                
+                <InkCanvas Grid.Row="2" Background="Transparent" EditingMode="{Binding SelectedDrawingMode}" 
+                           Strokes="{Binding StrokesCollection, UpdateSourceTrigger=PropertyChanged}">
+                    <InkCanvas.DefaultDrawingAttributes>
+                        <DrawingAttributes Color="AliceBlue" Width="5"/>
+                    </InkCanvas.DefaultDrawingAttributes>
+                </InkCanvas>
             </Grid>
         </Border>
     </Grid>

@@ -16,6 +16,8 @@ namespace ElloNote.Infrastructure
 
         private INavigator _navigator;
 
+        MainWindowViewModel _mainWindow = new MainWindowViewModel();
+        DrawWindowViewModel _drawWindow = new DrawWindowViewModel();
         public UpdateCurrentViewModelCommand(INavigator navigator)
         {
             _navigator = navigator;
@@ -33,16 +35,13 @@ namespace ElloNote.Infrastructure
                 switch (viewType)
                 {
                     case ViewType.Main:
-                        _navigator.CurrentViewModel = new MainWindowViewModel();
+                        _navigator.CurrentViewModel = _mainWindow;
                         break;
                     case ViewType.Draw:
-                        _navigator.CurrentViewModel = new DrawWindowViewModel();
+                        _navigator.CurrentViewModel = _drawWindow;
                         break;
                     case ViewType.Start:
                         _navigator.CurrentViewModel = new StartPageViewModel();
-                        break;
-                    case ViewType.View:
-                        _navigator.CurrentViewModel = new ViewPageViewModel();
                         break;
                     case ViewType.Search:
                         _navigator.CurrentViewModel = new SearchPageViewModel();

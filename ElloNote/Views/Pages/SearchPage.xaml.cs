@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace ElloNote.Views.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для SearchPage.xaml
+    /// Логика взаимодействия для ViewPage.xaml
     /// </summary>
     public partial class SearchPage : UserControl
     {
@@ -24,5 +24,6 @@ namespace ElloNote.Views.Pages
         {
             InitializeComponent();
         }
+
     }
 }

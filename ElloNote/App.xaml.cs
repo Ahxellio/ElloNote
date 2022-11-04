@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using ElloNote.ViewModels;
 using ElloNote.Views;
-using Egor92.MvvmNavigation;
-using Egor92.MvvmNavigation.Abstractions;
 using ElloNote.Infrastructure;
 
 namespace ElloNote

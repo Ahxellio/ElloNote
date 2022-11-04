@@ -18,13 +18,70 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
-                    <RowDefinition Height="30"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
                 <controls:ControlBar Grid.Column="1" Grid.Row="0"/>
-                <TextBlock Grid.Row="2" FontSize="96" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                           Width="520" Height="300" Text="Search Page" Foreground="AntiqueWhite"/>
+                <Grid Grid.Row="1" Margin="0,0,0,125" Height="210" VerticalAlignment="Top">
+                    <Label Content="Search For" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,10,0,0" Width="124" Height="36"
+                           Foreground="{StaticResource plainTextColor2}" FontSize="21"/>
+                    <TextBox FontSize="96"  Height="36" Background="{StaticResource panelOverColor}" VerticalAlignment="Top"  Foreground="AntiqueWhite" Margin="170,10,170,144"/>
+                    <Button Margin="1150,10,10,0" Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="Start Search" 
+                            Foreground="{StaticResource plainTextColor1}" FontSize="21" Height="36"></Button>
+
+                    <Label Content="Start Folder" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,68,0,0" Width="124" Height="36"
+                        Foreground="{StaticResource plainTextColor2}" FontSize="19"/>
+                    <TextBox FontSize="96"  Height="36" Background="{StaticResource panelOverColor}" VerticalAlignment="Top"  Foreground="AntiqueWhite" Margin="170,68,215,0"/>
+                    <Button Margin="1150,68,10,0" Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="Cancel Search" 
+                        Foreground="{StaticResource plainTextColor1}" FontSize="19" Height="36"/>
+                    <Button Margin="1075,68,170,0" Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="..." 
+                        Foreground="{StaticResource plainTextColor1}" FontSize="19" Height="36"/>
+                    <Label Content="Searching for:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,119,0,0" Width="152" Height="36"
+                        Foreground="{StaticResource plainTextColor2}" FontSize="19"/>
+                    <RadioButton Content="Folders" HorizontalAlignment="Left" Margin="216,119,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"/>
+                    <RadioButton Content="Files" HorizontalAlignment="Left" Margin="348,119,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"/>
+                    <RadioButton Content="File Contents" HorizontalAlignment="Left" Margin="480,119,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="156"/>
+                    <RadioButton Content="Any/All" HorizontalAlignment="Left" Margin="645,119,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"/>
+                    <Label Content="Other Options:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,170,0,0" Width="152" Height="36"
+                        Foreground="{StaticResource plainTextColor2}" FontSize="19"/>
+                    <CheckBox Content="Case Sensetive" HorizontalAlignment="Left" Margin="216,170,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="171"/>
+                    <CheckBox Content="Search Recursively" HorizontalAlignment="Left" Margin="392,170,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="200"/>
+                    <CheckBox Content="Ignore File Extension" HorizontalAlignment="Left" Margin="597,170,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="249"/>
+
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,250,0,0">
+                    <Polygon Fill="{StaticResource plainTextColor3}" StrokeThickness="1" 
+                                 Stroke="{StaticResource plainTextColor3}"
+                                     Points="1290,0,5,0"/>
+                    <Label Content="Results List" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" Height="31"/>
+                    <Button Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="Clear" 
+                            Foreground="{StaticResource plainTextColor1}" FontSize="21" Height="31" Margin="1200,5,10,0"/>
+                    <Button Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="Copy results to folder" 
+                        Foreground="{StaticResource plainTextColor1}" FontSize="21" Height="31" Margin="980,5,95,0"/>
+                    <ListBox Background="Transparent" Margin="0,41,0,80"/>
+                    <Grid Margin="0,405,0,52">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Items Found:" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" />
+                        <Label Content="10000" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Margin="78,0,0,0"  />
+                        <Label Content="Folders Serached:" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="168,0,0,0"/>
+                        <Label Content="10000" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Grid.Column="1" Margin="103,0,0,0"/>
+                        <Label Content="Files Serached:" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Grid.Column="2"/>
+                        <Label Content="10000" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Grid.Column="2" Margin="88,0,0,0"/>
+                        
+
+                    </Grid>
+                    <Grid Margin="0,433,0,0"/>
+                    <Label Content="Currently Searching:" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Margin="0,433,0,26"  />
+                    <Label Content="Currently Searching:" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Margin="116,433,0,26"   />
+                    <ProgressBar Margin="0,459,0,0" IsIndeterminate="True"/>
+
+
+
+                </Grid>
             </Grid>
         </Border>
     </Grid>

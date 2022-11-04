@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="/Styles/ToolBarStyle.xaml"/>
+                <ResourceDictionary Source="/Styles/SearchPageStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type vm:MainWindowViewModel}">
                 <views:MainView/>
@@ -28,9 +29,6 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:SearchPageViewModel}">
                 <views:SearchPage/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type vm:ViewPageViewModel}">
-                <views:ViewPage/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:RecentPageViewModel}">
                 <views:StartPage/>
