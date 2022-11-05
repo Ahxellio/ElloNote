@@ -4,9 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ElloNote.Views.Pages" 
+             xmlns:vm="clr-namespace:ElloNote.ViewModels"
              xmlns:controls="clr-namespace:ElloNote.Controls"
+             xmlns:converters="clr-namespace:ElloNote.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="760" d:DesignWidth="1290" Background="Transparent">
+    <UserControl.DataContext>
+        <vm:SearchPageViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <converters:InvertBoolConverter x:Key="MultiBoolToEnumConverter"/>
+        <converters:MultiBoolToEnumConverter x:Key="InvertBoolConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Border CornerRadius="0,10,10,0">
             <Border.Background>
@@ -22,31 +31,49 @@
                 </Grid.RowDefinitions>
 
                 <controls:ControlBar Grid.Column="1" Grid.Row="0"/>
-                <Grid Grid.Row="1" Margin="0,0,0,125" Height="210" VerticalAlignment="Top">
+                <Grid Grid.Row="1" Height="112" VerticalAlignment="Top">
                     <Label Content="Search For" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,10,0,0" Width="124" Height="36"
                            Foreground="{StaticResource plainTextColor2}" FontSize="21"/>
-                    <TextBox FontSize="96"  Height="36" Background="{StaticResource panelOverColor}" VerticalAlignment="Top"  Foreground="AntiqueWhite" Margin="170,10,170,144"/>
-                    <Button Margin="1150,10,10,0" Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="Start Search" 
+                    <TextBox FontSize="96"  Height="36" Background="{StaticResource panelOverColor}" 
+                             VerticalAlignment="Top" Text="{Binding SearchFor, UpdateSourceTrigger=PropertyChanged}"  Foreground="AntiqueWhite" Margin="170,10,170,0"/>
+                    <Button Margin="1150,10,10,0" Command="{Binding SearchCommand}" 
+                            IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBoolConverter}}" 
+                            Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="Start Search" 
                             Foreground="{StaticResource plainTextColor1}" FontSize="21" Height="36"></Button>
 
                     <Label Content="Start Folder" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,68,0,0" Width="124" Height="36"
                         Foreground="{StaticResource plainTextColor2}" FontSize="19"/>
-                    <TextBox FontSize="96"  Height="36" Background="{StaticResource panelOverColor}" VerticalAlignment="Top"  Foreground="AntiqueWhite" Margin="170,68,215,0"/>
-                    <Button Margin="1150,68,10,0" Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="Cancel Search" 
+                    <TextBox FontSize="96" Text="{Binding StartFolder, UpdateSourceTrigger=PropertyChanged}"  
+                             Height="36" Background="{StaticResource panelOverColor}" VerticalAlignment="Top"  
+                             Foreground="AntiqueWhite" Margin="170,68,215,0"/>
+                    <Button Margin="1150,68,10,0" Background="{StaticResource panelOverColor}" 
+                            VerticalAlignment="Top" Content="Cancel Search" 
+                            Command="{Binding CancelSearchCommand}"
+                            IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged}"
                         Foreground="{StaticResource plainTextColor1}" FontSize="19" Height="36"/>
-                    <Button Margin="1075,68,170,0" Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="..." 
+                    <Button Margin="1075,68,170,0" Background="{StaticResource panelOverColor}" 
+                            Command="{Binding SelectStartFolderCommand}"
+                            VerticalAlignment="Top" Content="..." 
                         Foreground="{StaticResource plainTextColor1}" FontSize="19" Height="36"/>
-                    <Label Content="Searching for:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,119,0,0" Width="152" Height="36"
+                    <Grid Margin="0,109,0,-138" IsEnabled="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBoolConverter}}">
+                        <Label Content="Searching for:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,0,0,0" Width="152" Height="36"
                         Foreground="{StaticResource plainTextColor2}" FontSize="19"/>
-                    <RadioButton Content="Folders" HorizontalAlignment="Left" Margin="216,119,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"/>
-                    <RadioButton Content="Files" HorizontalAlignment="Left" Margin="348,119,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"/>
-                    <RadioButton Content="File Contents" HorizontalAlignment="Left" Margin="480,119,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="156"/>
-                    <RadioButton Content="Any/All" HorizontalAlignment="Left" Margin="645,119,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"/>
-                    <Label Content="Other Options:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,170,0,0" Width="152" Height="36"
+                        <RadioButton Content="Folders" HorizontalAlignment="Left" Margin="216,0,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"
+                                 IsChecked="{Binding SearchPreference, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBoolConverter}, ConverterParameter=Folders}"/>
+                        <RadioButton Content="Files" HorizontalAlignment="Left" Margin="348,0,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"
+                                 IsChecked="{Binding SearchPreference, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBoolConverter}, ConverterParameter=Files}"/>
+                        <RadioButton Content="File Contents" HorizontalAlignment="Left" Margin="480,0,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="156"
+                                 IsChecked="{Binding SearchPreference, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBoolConverter}, ConverterParameter=FileContents}"/>
+                        <RadioButton Content="Any/All" HorizontalAlignment="Left" Margin="645,0,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="127"
+                                 IsChecked="{Binding SearchPreference, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource InvertBoolConverter}, ConverterParameter=All}"/>
+                        <Label Content="Other Options:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="41,40,0,0" Width="152" Height="36"
                         Foreground="{StaticResource plainTextColor2}" FontSize="19"/>
-                    <CheckBox Content="Case Sensetive" HorizontalAlignment="Left" Margin="216,170,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="171"/>
-                    <CheckBox Content="Search Recursively" HorizontalAlignment="Left" Margin="392,170,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="200"/>
-                    <CheckBox Content="Ignore File Extension" HorizontalAlignment="Left" Margin="597,170,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="249"/>
+                        <CheckBox IsChecked="{Binding CaseSenstive, UpdateSourceTrigger=PropertyChanged}" Content="Case Senstive" HorizontalAlignment="Left" Margin="216,40,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="171"/>
+                        <CheckBox IsChecked="{Binding SearchRecursive, UpdateSourceTrigger=PropertyChanged}" Content="Search Recursively" HorizontalAlignment="Left" Margin="392,40,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="200"/>
+                        <CheckBox IsChecked="{Binding IgnoreExtension, UpdateSourceTrigger=PropertyChanged}" Content="Ignore File Extension" HorizontalAlignment="Left" Margin="597,40,0,0" VerticalAlignment="Top" FontSize="19" Height="36" Width="249"/>
+                    </Grid>
+                   
+
 
                 </Grid>
                 <Grid Grid.Row="1" Margin="0,250,0,0">
@@ -71,13 +98,13 @@
                         <Label Content="10000" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Grid.Column="1" Margin="103,0,0,0"/>
                         <Label Content="Files Serached:" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Grid.Column="2"/>
                         <Label Content="10000" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Grid.Column="2" Margin="88,0,0,0"/>
-                        
+
 
                     </Grid>
                     <Grid Margin="0,433,0,0"/>
                     <Label Content="Currently Searching:" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Margin="0,433,0,26"  />
-                    <Label Content="Currently Searching:" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Margin="116,433,0,26"   />
-                    <ProgressBar Margin="0,459,0,0" IsIndeterminate="True"/>
+                    <Label Content="{Binding CurrentlySearching, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource plainTextColor1}" HorizontalAlignment="Left" Margin="116,433,0,26"   />
+                    <ProgressBar Margin="0,459,0,0" IsIndeterminate="{Binding IsSearching, UpdateSourceTrigger=PropertyChanged}"/>
 
 
 
