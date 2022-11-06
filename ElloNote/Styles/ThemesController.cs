@@ -34,25 +34,25 @@ namespace ElloNote.Styles
             {
                 ThemeDictionary = new ResourceDictionary() { Source = uri };
             }
-            public static void SetTheme(ThemeTypes theme)
-            {
-                string themeName = null;
-                CurrentTheme = theme;
-                switch (theme)
-                {
-                    case ThemeTypes.Dark: themeName = "DarkTheme"; break;
-                    case ThemeTypes.Light: themeName = "LightTheme"; break;
-                    case ThemeTypes.ColourfulDark: themeName = "ColourfulDarkTheme"; break;
-                    case ThemeTypes.ColourfulLight: themeName = "ColourfulLightTheme"; break;
-                }
+            //public static void SetTheme(ThemeTypes theme)
+            //{
+            //    string themeName = null;
+            //    CurrentTheme = theme;
+            //    switch (theme)
+            //    {
+            //        case ThemeTypes.Dark: themeName = "DarkTheme"; break;
+            //        case ThemeTypes.Light: themeName = "LightTheme"; break;
+            //        case ThemeTypes.ColourfulDark: themeName = "ColourfulDarkTheme"; break;
+            //        case ThemeTypes.ColourfulLight: themeName = "ColourfulLightTheme"; break;
+            //    }
 
-                try
-                {
-                    if (!string.IsNullOrEmpty(themeName))
-                        ChangeTheme(new Uri($"Themes/{themeName}.xaml", UriKind.Relative));
-                }
-                catch { }
-            }
+            //    try
+            //    {
+            //        if (!string.IsNullOrEmpty(themeName))
+            //            ChangeTheme(new Uri($"Themes/{themeName}.xaml", UriKind.Relative));
+            //    }
+            //    catch { }
+            //}
         }
     
 }
