@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -12,6 +13,9 @@ namespace ElloNote.Infrastructure
 {
     internal class UpdateCurrentViewModelCommand : ICommand
     {
+
+
+
         public event EventHandler? CanExecuteChanged;
 
         private INavigator _navigator;
@@ -26,9 +30,10 @@ namespace ElloNote.Infrastructure
         {
             return true;
         }
-
+        
         public void Execute(object? parameter)
         {
+            
             if (parameter is ViewType)
             {
                 ViewType viewType = (ViewType)parameter;
@@ -40,17 +45,8 @@ namespace ElloNote.Infrastructure
                     case ViewType.Draw:
                         _navigator.CurrentViewModel = _drawWindow;
                         break;
-                    case ViewType.Start:
-                        _navigator.CurrentViewModel = new StartPageViewModel();
-                        break;
                     case ViewType.Search:
                         _navigator.CurrentViewModel = new SearchPageViewModel();
-                        break;
-                    case ViewType.Recent:
-                        _navigator.CurrentViewModel = new RecentPageViewModel();
-                        break;
-                    case ViewType.Settings:
-                        _navigator.CurrentViewModel = new SettingsPageViewModel();
                         break;
                     default:
                         break;

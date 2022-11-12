@@ -1,7 +1,10 @@
-﻿using ElloNote.ViewModels.Base;
+﻿using ElloNote.ViewModels;
+using ElloNote.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,6 +32,7 @@ namespace ElloNote.Infrastructure
         }
         private bool CanMinimizedApplicationCommandExecute(object p) => true;
         #endregion
+       
         public ControlBarCommands()
         {
             CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);

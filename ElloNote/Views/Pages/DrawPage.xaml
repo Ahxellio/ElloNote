@@ -11,8 +11,10 @@
             xmlns:nav="clr-namespace:ElloNote.State.Navigators"
             xmlns:vm ="clr-namespace:ElloNote.ViewModels"
             xmlns:local="clr-namespace:ElloNote.Views.Pages"
+            xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
-             d:DesignHeight="760" d:DesignWidth="1290" Background="Transparent">
+             d:DesignHeight="760" d:DesignWidth="1290" Background="Transparent"
+             prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.DataContext>
         <vm:DrawWindowViewModel/>
     </UserControl.DataContext>

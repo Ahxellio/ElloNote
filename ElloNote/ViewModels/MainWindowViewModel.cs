@@ -31,6 +31,7 @@ using ElloNote.State.Navigators;
 
 namespace ElloNote.ViewModels
 {
+
     internal class MainWindowViewModel : BaseVM
     {
 
@@ -163,10 +164,14 @@ namespace ElloNote.ViewModels
 
 
         #endregion
+        
+        
         public MainWindowViewModel()
         {
             SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecutedAsync, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
         }
+
+
     }
 }

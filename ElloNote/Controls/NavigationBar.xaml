@@ -67,24 +67,6 @@
                     </StackPanel>
                 </RadioButton>
 
-                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color3}"
-                             Command="{Binding UpdateCurrentViewModelCommand}"
-                              CommandParameter="{x:Static nav:ViewType.Recent}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <fa:IconImage Icon="Clock"  Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Recent" Style="{StaticResource menuButtonText}"/>
-                    </StackPanel>
-                </RadioButton>
-
-                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource color7}"
-                             Command="{Binding UpdateCurrentViewModelCommand}"
-                              CommandParameter="{x:Static nav:ViewType.Settings}">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <fa:IconImage Icon="Tools"  Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Settings" Style="{StaticResource menuButtonText}"/>
-                    </StackPanel>
-                </RadioButton>
-
             </StackPanel>
         </Border>
     </Grid>

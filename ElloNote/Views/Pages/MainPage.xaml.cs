@@ -22,7 +22,7 @@ namespace ElloNote.Views.Pages
     {
         public MainView()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
     }
 }
