@@ -88,10 +88,12 @@
                             Foreground="{StaticResource plainTextColor1}" FontSize="21" Height="31" Margin="1200,5,10,0"/>
                     <Button Command="{Binding ExportResultsCommand}" Background="{StaticResource panelOverColor}" VerticalAlignment="Top" Content="Copy results to folder" 
                         Foreground="{StaticResource plainTextColor1}" FontSize="21" Height="31" Margin="980,5,95,0"/>
-                    <ListBox Foreground="AliceBlue" ItemsSource="{Binding Results, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" Margin="0,36,0,0">
+                    <ListBox Foreground="AliceBlue" ItemsSource="{Binding Results, UpdateSourceTrigger=PropertyChanged}" 
+                             Background="Transparent" Margin="0,36,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <result:ResultControl DataContext="{Binding}"/>
+                                
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

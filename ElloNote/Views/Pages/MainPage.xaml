@@ -107,7 +107,7 @@
                                          ToolTip="Underline">
                                 <TextBlock Text="U" TextDecorations="Underline"/>
                             </ToggleButton>
-                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
+                            <Button Style="{StaticResource dashboardBarButton}"  Command="EditingCommands.ToggleBullets" CommandTarget="{Binding ElementName=MainTextBox}" ToolTip="Bullets">
                                 <!--#region List Bulets-->
                                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                     <Canvas Name="svg49" Width="256" Height="256" Background="{StaticResource plainTextColor1}">
@@ -128,7 +128,7 @@
                                 </Viewbox>
                                 <!--#endregion-->
                             </Button>
-                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
+                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.ToggleNumbering" CommandTarget="{Binding ElementName=MainTextBox}" ToolTip="Numbering">
                                 <!--#region List Numbering-->
                                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                     <Canvas Name="Capa_1" Width="94.479" Height="94.479" Canvas.Left="0" Canvas.Top="0" >
@@ -191,7 +191,7 @@
                                 </Viewbox>
                                 <!--#endregion-->
                             </Button>
-                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignLeft" ToolTip="Align Left">
+                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignLeft" CommandTarget="{Binding ElementName=MainTextBox}" ToolTip="Align Left">
                                 <!--#region Align Left-->
                                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                     <Canvas Name="Layer_1" Canvas.Left="0" Canvas.Top="0" Width="486" Height="486">
@@ -256,7 +256,7 @@
                                 </Viewbox>
                                 <!--#endregion-->
                             </Button>
-                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignCenter" ToolTip="Align Center">
+                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignCenter" CommandTarget="{Binding ElementName=MainTextBox}" ToolTip="Align Center">
                                 <!--#region Align Center-->
                                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                     <Canvas Name="Layer_2" Canvas.Left="0" Canvas.Top="0" Width="486" Height="486">
@@ -323,7 +323,7 @@
                                 </Viewbox>
                                 <!--#endregion-->
                             </Button>
-                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignRight" ToolTip="Align Right">
+                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignRight" CommandTarget="{Binding ElementName=MainTextBox}" ToolTip="Align Right">
                                 <!--#region Align Right-->
                                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                     <Canvas Name="Layer_3" Canvas.Left="0" Canvas.Top="0" Width="486" Height="486">
@@ -392,7 +392,7 @@
                                 <!--#endregion-->
 
                             </Button>
-                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignJustify" ToolTip="Align Justify">
+                            <Button Style="{StaticResource dashboardBarButton}" Command="EditingCommands.AlignJustify" CommandTarget="{Binding ElementName=MainTextBox}" ToolTip="Align Justify">
                                 <!--#region Full Align-->
                                 <Viewbox xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" Stretch="Uniform">
                                     <Canvas Name="Layer_4" Canvas.Left="0" Canvas.Top="0" Width="486" Height="486">
@@ -484,13 +484,19 @@
                                          FontSize="{Binding SelectedFontSize}"
                                          FontFamily="{Binding Path=SelectedItem, ElementName=fontsComboBox}"
                                          Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged}"
-                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                                          >
 
                             <xctk:RichTextBox.CommandBindings>
                                 <CommandBinding Command="EditingCommands.ToggleBold"/>
                                 <CommandBinding Command="EditingCommands.ToggleItalic"/>
                                 <CommandBinding Command="EditingCommands.ToggleUnderline" />
+                                <CommandBinding Command="EditingCommands.ToggleBullets"/>
+                                <CommandBinding Command="EditingCommands.ToggleNumbering"/>
+                                <CommandBinding Command="EditingCommands.AlignLeft"/>
+                                <CommandBinding Command="EditingCommands.AlignCenter"/>
+                                <CommandBinding Command="EditingCommands.AlignRight"/>
+                                <CommandBinding Command="EditingCommands.AlignJustify"/>
                             </xctk:RichTextBox.CommandBindings>
                             <xctk:RichTextBox.TextFormatter>
                                 <xctk:RtfFormatter/>

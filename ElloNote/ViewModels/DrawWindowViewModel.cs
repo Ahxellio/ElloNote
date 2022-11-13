@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using Xceed.Wpf.Toolkit;
 
@@ -66,22 +68,30 @@ namespace ElloNote.ViewModels
         }
         #region Save File Command
         public ICommand SaveFileCommand { get; }
-        private void OnSaveFileCommandExecutedAsync(object p)
+        private void OnSaveFileCommandExecuted(object p)
         {
             var file_name = p as string;
             if (file_name == null)
             {
                 var dlg = new SaveFileDialog();
-                dlg.Filter = "Text files (.isf)|*.isf|All files (*.*)|*.*";
+                dlg.Filter = "Image (.jpg)|*.jpg|All files (*.*)|*.*";
                 dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (dlg.ShowDialog() != true) return;
                 file_name = dlg.FileName;
             }
-            using (var writer = new StreamWriter(new FileStream(file_name, FileMode.Create, FileAccess.Write)))
+            InkCanvas ic = new InkCanvas();
+            ic.Strokes = StrokesCollection;
+
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)ic.ActualWidth, (int)ic.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
+            rtb.Render(ic);
+
+
+            using (FileStream fs = new FileStream(file_name, FileMode.Create))
             {
-                writer.Write(_strokesCollection);
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(rtb));
+                encoder.Save(fs);
             }
-            MessageBox.Show("Images Saving is not working! :)", "Error");
         }
         private bool CanSaveFileCommandExecute(object p) => true;
         #endregion
@@ -114,7 +124,7 @@ namespace ElloNote.ViewModels
 
         public DrawWindowViewModel()
         {
-            SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecutedAsync, CanSaveFileCommandExecute);
+            SaveFileCommand = new LambdaCommand(OnSaveFileCommandExecuted, CanSaveFileCommandExecute);
             OpenFileCommand = new LambdaCommand(OnOpenFileCommandExecuted, CanOpenFileCommandExecute);
 
         }
